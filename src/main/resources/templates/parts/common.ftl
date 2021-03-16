@@ -14,7 +14,7 @@
 
     <style>
       body{
-        background-image: url("static/images/homepage2.jpg");
+        background-image: url(static/images/homepage2.jpg);
         background-repeat:no-repeat;
         background-size:auto;
         background-position:center;

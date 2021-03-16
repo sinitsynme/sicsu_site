@@ -1,10 +1,6 @@
 package ru.sinitsynme.sicsu_site.user.controller;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -33,7 +29,7 @@ public class RegistrationController {
   @GetMapping
   public String getRegForm(Model model) {
 //    model.addAttribute("roles", Arrays.stream(Role.values()).filter(it -> it != Role.ROLE_ADMIN));
-    return "registration";
+    return "/authReg/registration";
   }
 
   @PostMapping
@@ -46,17 +42,17 @@ public class RegistrationController {
 
     if (!user.getPassword().equals(confirm_psw)) {
       model.addAttribute("message", "The passwords are not equal!");
-      return "registration";
+      return "/authReg/registration";
     }
 
     if (dbUser != null) {
       model.addAttribute("message", "The user with the same username already exists!");
-      return "registration";
+      return "/authReg/registration";
     }
 
     if (!(isStudent || isTeacher) || (isStudent && isTeacher)) {
       model.addAttribute("message", "You have to choose only 1 role!");
-      return "/registration";
+      return "/authReg/registration";
     }
     user.setRoles(new HashSet<>());
 
@@ -66,6 +62,7 @@ public class RegistrationController {
     else if (isTeacher) {
       user.getRoles().add(Role.ROLE_TEACHER);
     }
+    //maybe there will be some other roles
 
     userRepository.save(user);
     model.addAttribute("userRegistering", user);

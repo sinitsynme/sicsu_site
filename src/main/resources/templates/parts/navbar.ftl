@@ -20,6 +20,9 @@
         </li>
 
           <#if known>
+            <li>
+              <a class="nav-link" href="/groups">Groups</a>
+            </li>
               <#if isAdmin>
                 <li>
                   <a class="nav-link" href="/users" style="color:aqua;">Users</a>
@@ -31,9 +34,10 @@
 
               <#else>
                 <li>
-                  <a class="nav-link" href="cabinet" style="color:aqua">Personal cabinet</a>
+                  <a class="nav-link" href="/cabinet" style="color:aqua">Personal cabinet</a>
                 </li>
-                </#if>
+
+              </#if>
           </#if>
 
 
