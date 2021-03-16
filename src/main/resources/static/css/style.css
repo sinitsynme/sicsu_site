@@ -1,0 +1,23 @@
+a{
+    color: aqua;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+.block{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@font-face {
+    font-family: 'Playfair Display', arial;
+    src: url("https://allfont.ru/allfont.css?fonts=playfair-display");
+}
+
+
+

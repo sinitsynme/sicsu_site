@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "upload.path",
+      "type": "java.lang.String",
+      "description": "Description for upload.path.",
+      "sourceType": "ru.sinitsynme.sicsu_site.config.CustomProperties",
+      "defaultValue": "/C:/Users/sinit/OneDrive/Рабочий стол/Java/sicsu_files"
+    }
+  ] }
