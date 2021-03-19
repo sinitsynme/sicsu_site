@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.sinitsynme.sicsu_site.user.entity.Role;
 import ru.sinitsynme.sicsu_site.user.entity.User;
 import ru.sinitsynme.sicsu_site.user.repository.UserRepository;
+import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
 
 @Controller
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 @RequestMapping("/registration")
 public class RegistrationController {
 
-  UserRepository userRepository;
+ private final UserDetailsServiceImpl userDetailsService;
 
-  @Autowired
+ @Autowired
   public RegistrationController(
-      UserRepository userRepository) {
-    this.userRepository = userRepository;
+      UserDetailsServiceImpl userDetailsService) {
+    this.userDetailsService = userDetailsService;
   }
 
   @GetMapping
@@ -38,7 +39,7 @@ public class RegistrationController {
       @RequestParam(required = false, defaultValue = "false") Boolean isTeacher) {
 
 
-    User dbUser = userRepository.findByUsername(user.getUsername());
+    User dbUser = (User) userDetailsService.loadUserByUsername(user.getUsername());
 
     if (!user.getPassword().equals(confirm_psw)) {
       model.addAttribute("message", "The passwords are not equal!");
@@ -64,16 +65,15 @@ public class RegistrationController {
     }
     //maybe there will be some other roles
 
-    userRepository.save(user);
+    userDetailsService.saveUser(user);
     model.addAttribute("userRegistering", user);
 
-//    if(isStudent){
-//      return "studentReg";
-//    }
-//    else if(isTeacher){
-//      return "teacherReg";
-//    }
-
+    if(isStudent){
+      return "/authReg/studentReg";
+    }
+    else if(isTeacher){
+      return "/authReg/teacherReg";
+    }
     return "redirect:/users";
   }
 
@@ -81,6 +81,8 @@ public class RegistrationController {
   public String StudentReg(Model model){
     return "redirect:/users";
   }
+
+
 
 
 }
