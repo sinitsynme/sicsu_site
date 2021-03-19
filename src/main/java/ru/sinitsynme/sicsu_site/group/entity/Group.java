@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
 import ru.sinitsynme.sicsu_site.teacherData.entity.TeacherData;
@@ -18,10 +20,13 @@ import ru.sinitsynme.sicsu_site.teacherData.entity.TeacherData;
 public class Group {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_seq")
+  @SequenceGenerator(name = "groups_seq", sequenceName = "SEQ_GROUP", allocationSize=1)
   private Long id;
 
   private String groupFullId;
+
+  private String info;
 
   @OneToMany(mappedBy = "studentGroup")
   private Set<StudentData> students;
@@ -35,6 +40,14 @@ public class Group {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
   }
 
   public String getGroupFullId() {
