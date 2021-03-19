@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +26,8 @@ import ru.sinitsynme.sicsu_site.teacherData.entity.TeacherData;
 public class User implements UserDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
+  @SequenceGenerator(name = "users_seq", sequenceName = "SEQ_USER", allocationSize=1)
   private Long id;
 
   @ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
