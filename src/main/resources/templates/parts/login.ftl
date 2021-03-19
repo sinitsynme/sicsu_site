@@ -3,16 +3,16 @@
   <div class="justify-content-center" style="color: lightcyan">
     <form action=${path} method="post">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Username</label>
+        <label class="col-sm-2 col-form-label" for="username">Username</label>
         <div class="col-sm-4">
-          <input class="form-control" name="username" type="text" placeholder="Username">
+          <input class="form-control" name="username" id="username" type="text" placeholder="Username">
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Password</label>
+        <label class="col-sm-2 col-form-label" for="password">Password</label>
         <div class="col-sm-4">
-          <input class="form-control" name="password" type="password" placeholder="Password">
+          <input class="form-control" name="password" type="password" id="password" placeholder="Password">
         </div>
       </div>
 
@@ -22,9 +22,9 @@
         <#if isRegisterFrom>
 
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Confirm password</label>
+            <label class="col-sm-2 col-form-label" for="conf_psw">Confirm password</label>
             <div class="col-sm-4">
-              <input class="form-control" name="confirm_psw" type="password"
+              <input class="form-control" name="confirm_psw" type="password" id="conf_psw"
                      placeholder="Confirm password">
             </div>
           </div>
