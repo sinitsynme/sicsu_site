@@ -21,7 +21,5 @@ public interface StudentDataRepository extends JpaRepository<StudentData, Long> 
   @NonNull
   Optional<StudentData> findById(@NonNull Long id);
 
-  @Query(nativeQuery = true, value = "select * from student_data where student_id = ?1")
-  Optional<StudentData> findByStudentId(Long studentId);
 
 }

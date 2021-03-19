@@ -20,11 +20,15 @@ public class StudentDataService {
   }
 
   public Optional<StudentData> getStudentDataById(Long id){
-    return repository.findByStudentId(id);
+    return repository.findById(id);
   }
 
   public List<StudentData> getAllStudents(){
     return repository.findAll(Sort.by("lastName"));
+  }
+
+  public void saveStudentData(StudentData studentData){
+    repository.save(studentData);
   }
 
 }
