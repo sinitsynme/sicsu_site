@@ -11,13 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import ru.sinitsynme.sicsu_site.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
 
 @Entity
-public class TeacherData {
+public class TeacherData extends UserData {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "teachers_seq")
+  @SequenceGenerator(name = "teachers_seq", sequenceName = "SEQ_TEACHER", allocationSize=1)
   private Long id;
 
   private String firstName;
@@ -25,6 +28,8 @@ public class TeacherData {
 
   private String email;
 
+
+  //after the basics are complete, a discipline will become an entity and have ManyToMany rel with teacher
   @ElementCollection
   private Set<String> disciplines;
 

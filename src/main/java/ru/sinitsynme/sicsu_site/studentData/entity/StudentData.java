@@ -1,6 +1,7 @@
 package ru.sinitsynme.sicsu_site.studentData.entity;
 
 import java.sql.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,15 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import ru.sinitsynme.sicsu_site.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
 
 @Entity
 @Table(name = "student_data")
-public class StudentData {
+public class StudentData extends UserData {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "students_seq")
+  @SequenceGenerator(name = "students_seq", sequenceName = "SEQ_STUDENT", allocationSize=1)
   private Long id;
 
   private String firstName;
@@ -27,7 +31,7 @@ public class StudentData {
 
   private String email;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(name="students_groups", joinColumns = @JoinColumn(name = "student_data_id"), inverseJoinColumns = @JoinColumn(name="group_id"))
   private Group studentGroup;
 
