@@ -1,9 +1,9 @@
-<#import "parts/common.ftl" as c>
-<#include "parts/security.ftl">
+<#import "../parts/common.ftl" as c>
+<#include "../parts/security.ftl">
 
-<@c.head pageName="Personal cabinet | SICSU">
+<@c.head pageName="Student's cabinet | SICSU">
 
-    <#if !known || error??>
+    <#if error??>
       <div class="alert block alert-danger align-self-center col-sm-5 text-center" role="alert">
         <h1>ERROR 404</h1>
         <p class="mt-2">Return to <a style="color: darkblue" href="/"
@@ -11,7 +11,6 @@
       </div>
 
     <#else>
-        <#if isStudent>
           <div style="color: lightcyan">
             <h1>STUDENT PAGE</h1>
           </div>
@@ -30,15 +29,6 @@
             </ul>
           </div>
 
-
-
-
-        <#elseif isTeacher>
-          <div>
-            <h1>TEACHERS PAGE</h1>
-          </div>
-
-        </#if>
     </#if>
 
 
