@@ -1,4 +1,8 @@
 spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   datasource:
     url: jdbc:postgresql://localhost:5432/sicsu_site
     username: postgres
@@ -10,5 +14,6 @@ spring:
   freemarker:
     suffix: .ftl
     expose-request-attributes: true
+
 
 upload.path: /C:/Users/sinit/OneDrive/Рабочий стол/Java/sicsu_files
