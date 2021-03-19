@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import ru.sinitsynme.sicsu_site.UserData;
+import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
 
 @Entity

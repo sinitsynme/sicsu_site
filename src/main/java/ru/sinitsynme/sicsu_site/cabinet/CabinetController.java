@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sinitsynme.sicsu_site.UserData;
+import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
 import ru.sinitsynme.sicsu_site.teacherData.entity.TeacherData;
 import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;

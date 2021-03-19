@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.sinitsynme.sicsu_site.UserData;
+import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.studentData.service.StudentDataService;
 import ru.sinitsynme.sicsu_site.teacherData.service.TeacherDataService;
 import ru.sinitsynme.sicsu_site.user.entity.User;
