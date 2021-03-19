@@ -1,7 +1,7 @@
 package ru.sinitsynme.sicsu_site.group.service;
 
-import java.awt.GridBagConstraints;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -19,16 +19,25 @@ public class GroupService {
     this.groupRepository = groupRepository;
   }
 
-  public List<Group> getAllGroups(){ //add pagination
+  public List<Group> getAllGroups() { //add pagination
     return groupRepository.findAll(Sort.by(Direction.ASC, "groupFullId"));
   }
 
-  public Group getByGroupFullId(String groupFullId){
+  public Group getByGroupFullId(String groupFullId) {
     return groupRepository.findByGroupFullId(groupFullId);
   }
 
-  public void saveGroup(Group group){
+  public void saveGroup(Group group) {
     groupRepository.save(group);
   }
+
+  public void deleteByGroupId(Long id) {
+    groupRepository.deleteById(id);
+  }
+
+  public Optional<Group> getGroupById(Long id){
+    return groupRepository.findById(id);
+  }
+
 
 }
