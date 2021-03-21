@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.sinitsynme.sicsu_site.user.entity.User;
 import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
+import ru.sinitsynme.sicsu_site.user.service.UserService;
 
 @Controller
 @RequestMapping("/users")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class UserController {
 
-  private final UserDetailsServiceImpl service;
+  private final UserService service;
 
   @Autowired
-  public UserController(UserDetailsServiceImpl service) {
+  public UserController(UserService service) {
     this.service = service;
   }
 
@@ -60,13 +61,16 @@ public class UserController {
     Optional<User> userOptional = service.getUserById(id);
     if(userOptional.isPresent()){
       User user = userOptional.get();
-      service.deleteUser(user);
-      return "redirect:/users";
+      if(!user.getUsername().equals("admin")){
+        service.deleteUser(user);
+        return "redirect:/users";
+      }
+      model.addAttribute("error", "Cannot delete main admin");
     }
     else{
       model.addAttribute("error", "Cannot find user with such id");
-      return "errorPage";
     }
+    return "errorPage";
   }
 
   @GetMapping("/{id}/edit")

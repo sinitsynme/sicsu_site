@@ -22,6 +22,7 @@ import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
 import ru.sinitsynme.sicsu_site.studentData.service.StudentDataService;
 import ru.sinitsynme.sicsu_site.user.entity.User;
 import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
+import ru.sinitsynme.sicsu_site.user.service.UserService;
 
 @Controller
 @RequestMapping("/students")
@@ -29,15 +30,14 @@ public class StudentDataController {
 
   private final StudentDataService studentService;
   private final GroupService groupService;
-  private final UserDetailsServiceImpl userDetailsService;
+  private final UserService userService;
 
   public StudentDataController(
       StudentDataService studentService,
-      GroupService groupService,
-      UserDetailsServiceImpl userDetailsService) {
+      GroupService groupService, UserService userService) {
     this.studentService = studentService;
     this.groupService = groupService;
-    this.userDetailsService = userDetailsService;
+    this.userService = userService;
   }
 
   @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
@@ -67,12 +67,12 @@ public class StudentDataController {
     group.getStudents().add(student);
     groupService.saveGroup(group);
 
-    Optional<User> user = userDetailsService.getUserById(userId);
+    Optional<User> user = userService.getUserById(userId);
     if(user.isPresent()){
       User userRegistering = user.get();
       userRegistering.setStudentData(student);
       userRegistering.setActive(true);
-      userDetailsService.saveUser(userRegistering);
+      userService.saveUser(userRegistering);
       return "redirect:/users";
     }
     else{

@@ -10,22 +10,22 @@ import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
 import ru.sinitsynme.sicsu_site.teacherData.entity.TeacherData;
 import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
+import ru.sinitsynme.sicsu_site.user.service.UserService;
 
 @Controller
 @RequestMapping("/cabinet")
 public class CabinetController {
 
-  private final UserDetailsServiceImpl userDetailsService;
+  private final UserService userService;
 
   @Autowired
-  public CabinetController(
-      UserDetailsServiceImpl userDetailsService) {
-    this.userDetailsService = userDetailsService;
+  public CabinetController(UserService userService) {
+    this.userService = userService;
   }
 
   @GetMapping
   public String getCabinetPage(Model model) {
-    Optional<UserData> optionalUserData = userDetailsService.getCurrentUserData();
+    Optional<UserData> optionalUserData = userService.getCurrentUserData();
     if (optionalUserData.isPresent()) {
       UserData userData = optionalUserData.get();
       model.addAttribute("userData", userData);

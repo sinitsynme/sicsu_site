@@ -7,20 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
+import ru.sinitsynme.sicsu_site.studentData.service.StudentDataService;
 import ru.sinitsynme.sicsu_site.user.entity.Role;
 import ru.sinitsynme.sicsu_site.user.entity.User;
 import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
+import ru.sinitsynme.sicsu_site.user.service.UserService;
 
 @Controller
 @RequestMapping("/util")
 public class UtilController {
 
-  private final UserDetailsServiceImpl userDetailsService;
+  private final UserService userService;
 
-  @Autowired
-  public UtilController(
-      UserDetailsServiceImpl userDetailsService) {
-    this.userDetailsService = userDetailsService;
+  public UtilController(UserService userService) {
+    this.userService = userService;
   }
 
   //for admin registration
@@ -35,9 +36,10 @@ public class UtilController {
     admin.setRoles(roles);
     admin.setActive(true);
 
-    userDetailsService.saveUser(admin);
+    userService.saveUser(admin);
 
     return "redirect:/login";
   }
+
 
 }
