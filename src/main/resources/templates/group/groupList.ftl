@@ -8,7 +8,15 @@
     <h1>GROUP LIST</h1>
   </div>
 
-  <table class="table" style="background-color: whitesmoke; width: auto">
+    <#if isAdmin>
+      <div class="block">
+        <form action="/groups/new" method="get">
+          <button class="btn btn-primary" type="submit">Add new group</button>
+        </form>
+      </div>
+    </#if>
+
+  <table class="table mt-3" style="background-color: whitesmoke; width: auto">
     <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -24,7 +32,7 @@
     <tbody>
     <#list groups as group>
       <tr>
-        <th scope="row">${group_index+1}</th> <!--MAKE COUNT++-->
+        <th scope="row">${group_index+1}</th>
         <th scope="row">${group.groupFullId}</th>
         <th scope="row">${group.info}</th>
 
@@ -53,13 +61,7 @@
 
   </table>
 
-    <#if isAdmin>
-      <div class="block">
-        <form action="/groups/new" method="get">
-          <button class="btn btn-primary" type="submit">Add new group</button>
-        </form>
-      </div>
-    </#if>
+
 
 
 
