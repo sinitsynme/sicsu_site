@@ -30,7 +30,7 @@
       <#nested>
   </div>
 
-  <footer class="fixed-bottom bg-dark justify-content-center text-white" style="text-align: center; font-family: 'Comic Sans MS', serif">
+  <footer class="fixed-bottom bg-dark justify-content-center text-white" style="text-align: center; font-family: 'Comic Sans MS', serif; font-size: 14pt">
     <p>Developed by Maxim Sinitsyn, 2021</p>
   </footer>
 
