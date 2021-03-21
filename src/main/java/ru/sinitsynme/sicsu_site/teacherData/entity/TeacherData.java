@@ -11,9 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
+import ru.sinitsynme.sicsu_site.user.entity.User;
 
 @Entity
 public class TeacherData extends UserData {
@@ -25,6 +27,9 @@ public class TeacherData extends UserData {
 
   private String firstName;
   private String lastName;
+
+  @OneToOne(mappedBy = "teacherData", cascade = CascadeType.ALL)
+  private User user;
 
   private String email;
 
@@ -79,6 +84,13 @@ public class TeacherData extends UserData {
     this.lastName = lastName;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public Set<String> getDisciplines() {
     return disciplines;

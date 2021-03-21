@@ -10,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
+import ru.sinitsynme.sicsu_site.user.entity.User;
 
 @Entity
 @Table(name = "student_data")
@@ -27,6 +29,9 @@ public class StudentData extends UserData {
   private String firstName;
   private String lastName;
 
+  @OneToOne(mappedBy = "studentData", cascade = CascadeType.ALL)
+  private User user;
+
   private Date birthDate;
 
   private String email;
@@ -36,6 +41,14 @@ public class StudentData extends UserData {
   private Group studentGroup;
 
   private byte courseNumber;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public String getEmail() {
     return email;
