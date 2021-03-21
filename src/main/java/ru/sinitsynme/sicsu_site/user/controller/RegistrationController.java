@@ -35,8 +35,7 @@ public class RegistrationController {
   @PostMapping
   public String register(@RequestParam String confirm_psw, User user, Model model,
       @RequestParam(required = false, defaultValue = "false") Boolean isStudent,
-      @RequestParam(required = false, defaultValue = "false") Boolean isTeacher,
-      @RequestParam String example) {
+      @RequestParam(required = false, defaultValue = "false") Boolean isTeacher) {
 
     User dbUser = userService.getUserByUsername(user.getUsername());
 
@@ -56,8 +55,6 @@ public class RegistrationController {
     }
     user.setRoles(new HashSet<>());
 
-    System.out.println(example);
-
     if (isStudent) {
       user.getRoles().add(Role.ROLE_STUDENT);
     } else if (isTeacher) {
@@ -70,15 +67,9 @@ public class RegistrationController {
 
     if (isStudent) {
       return "/authReg/studentReg";
-    } else if (isTeacher) {
+    } else {
       return "/authReg/teacherReg";
     }
-    return "redirect:/users";
-  }
-
-  @PostMapping("/student")
-  public String StudentReg(Model model) {
-    return "redirect:/users";
   }
 
 
