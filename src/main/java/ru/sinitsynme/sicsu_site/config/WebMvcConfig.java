@@ -1,6 +1,5 @@
 package ru.sinitsynme.sicsu_site.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -9,16 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer  {
 
-  @Value("${upload.path}")
-  public String uploadPath;
+//  @Value("${upload.path}")
+//  public String uploadPath;
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/login").setViewName("/authReg/loginpage");
+    registry.addViewController("/login").setViewName("authReg/loginPage");
     registry.addViewController("/").setViewName("redirect:/home");
     registry.addViewController("/home").setViewName("homepage");
     registry.addViewController("/info").setViewName("info");
-
   }
 
 
