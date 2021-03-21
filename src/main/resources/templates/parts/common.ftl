@@ -26,13 +26,13 @@
 
   <@nav.navbar/>
 
-  <div class="container mt-5">
+  <div class="container mt-3">
       <#nested>
   </div>
 
-  <nav class="navbar fixed-bottom navbar-dark bg-dark justify-content-center">
-    <p class="navbar-brand">Developed by Maxim Sinitsyn, 2021</p>
-  </nav>
+  <footer class="fixed-bottom bg-dark justify-content-center text-white" style="text-align: center; font-family: 'Comic Sans MS', serif">
+    <p>Developed by Maxim Sinitsyn, 2021</p>
+  </footer>
 
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
