@@ -26,7 +26,7 @@ public class TeacherDataController {
       return "redirect:/users";
     }
     model.addAttribute("error", "Something went wrong");
-    return "errorPage";
+    return "utilPages/errorPage";
   }
 
 

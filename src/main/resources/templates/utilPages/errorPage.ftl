@@ -1,4 +1,4 @@
-<#import "parts/common.ftl" as c>
+<#import "../parts/common.ftl" as c>
 
 <@c.head pageName="Error 404">
   <div class="alert block alert-danger align-self-center col-sm-5 text-center" role="alert">

@@ -63,7 +63,7 @@ public class GroupController {
 
     }
     model.addAttribute("error", "Cannot find such group");
-    return "errorPage";
+    return "utilPages/errorPage";
   }
 
   @PreAuthorize("hasAuthority('ROLE_ADMIN')")
