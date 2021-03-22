@@ -3,6 +3,11 @@
 
 <@c.head pageName="Student's cabinet | SICSU">
 
+<#if isAdmin>
+  <#assign path="/cabinet/changepsw/${userData.getUser().id}">
+    <#else>
+    <#assign path="/cabinet/changepsw">
+</#if>
 
   <div style="color: lightcyan">
     <h1>STUDENT PAGE</h1>
@@ -19,10 +24,15 @@
       <li class="list-group-item">E-mail: <b>${userData.getEmail()!}</b></li>
       <li class="list-group-item">Course: <b>${userData.getCourseNumber()!}</b></li>
       <li class="list-group-item">Group number: <b>${userData.getGroupId()!}</b></li>
+
+        <#if user.id == userData.getUser().id || isAdmin>
+          <li class="list-group-item block">
+            <form action="${path}" method="get">
+              <button type="submit" class="btn btn-primary">Change password</button>
+            </form>
+          </li>
+        </#if>
     </ul>
   </div>
-
-
-
 
 </@c.head>
