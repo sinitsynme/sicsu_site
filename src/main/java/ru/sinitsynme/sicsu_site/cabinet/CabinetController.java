@@ -40,17 +40,12 @@ public class CabinetController {
   }
 
 
-  //try to make only one method with required=false
-
-  @GetMapping("/changepsw")
-  public String changePassword(Model model) {
-    model.addAttribute("userId", userService.getCurrentUser().getId());
-    return "authReg/changePasswordPage";
-  }
-
-  @GetMapping("/changepsw/{userId}")
-  public String changePassword(Model model, @PathVariable Long userId){
-    model.addAttribute("userId", userId);
+  @GetMapping(path = {"/changepsw/{userId}", "/changepsw"})
+  public String changePassword(Model model, @PathVariable Optional<Long> userId){
+    if(userId.isPresent()){
+      model.addAttribute("userId", userId.get());
+    }
+    else model.addAttribute("userId", userService.getCurrentUser().getId());
     return "authReg/changePasswordPage";
   }
 
