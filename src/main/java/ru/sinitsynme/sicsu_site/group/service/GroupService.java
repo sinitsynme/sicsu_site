@@ -1,5 +1,6 @@
 package ru.sinitsynme.sicsu_site.group.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
 import ru.sinitsynme.sicsu_site.group.repository.GroupRepository;
+import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
 
 @Service
 public class GroupService {
@@ -37,6 +39,13 @@ public class GroupService {
 
   public Optional<Group> getGroupById(Long id){
     return groupRepository.findById(id);
+  }
+
+  public void addStudentToGroup(Group group, StudentData student){
+    if(group.getStudents() == null){
+      group.setStudents(new HashSet<>());
+    }
+    group.getStudents().add(student);
   }
 
 

@@ -58,7 +58,7 @@ public class StudentDataController {
     student.setStudentGroup(group);
     studentService.saveStudentData(student);
 
-    group.getStudents().add(student);
+    groupService.addStudentToGroup(group, student);
     groupService.saveGroup(group);
 
     Optional<User> user = userService.getUserById(userId);
