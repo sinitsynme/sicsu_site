@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.sinitsynme.sicsu_site.user.entity.User;
-import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
 import ru.sinitsynme.sicsu_site.user.service.UserService;
 
 @Controller
 @RequestMapping("/users")
-@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class UserController {
 
   private final UserService service;
@@ -27,12 +25,14 @@ public class UserController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   public String listAllUsers(Model model) {
     model.addAttribute("users", service.getUserList());
     return "userList";
   }
 
   @GetMapping("/{id}")
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   public String getUserPage(Model model, @PathVariable Long id){
     Optional<User> optionalUser = service.getUserById(id);
     if(optionalUser.isPresent()){
@@ -47,16 +47,17 @@ public class UserController {
       }
       else {
         model.addAttribute("error", "Data is unavailable");
-        return "errorPage";
+        return "utilPages/errorPage";
       }
     }
     else{
       model.addAttribute("error", "Cannot find user with such id");
-      return "errorPage";
+      return "utilPages/errorPage";
     }
   }
 
   @DeleteMapping("/delete/{id}")
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   public String deleteUser(Model model, @PathVariable Long id){
     Optional<User> userOptional = service.getUserById(id);
     if(userOptional.isPresent()){
@@ -70,10 +71,11 @@ public class UserController {
     else{
       model.addAttribute("error", "Cannot find user with such id");
     }
-    return "errorPage";
+    return "utilPages/errorPage";
   }
 
   @GetMapping("/{id}/edit")
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   public String getEditForm(Model model, @PathVariable Long id){
     Optional<User> userOptional = service.getUserById(id);
     if(userOptional.isPresent()){
@@ -89,14 +91,62 @@ public class UserController {
       }
       else {
         model.addAttribute("error", "Data is unavailable");
-        return "errorPage";
+        return "utilPages/errorPage";
       }
     }
     else{
       model.addAttribute("error", "Cannot find user with such id");
-      return "errorPage";
+      return "utilPages/errorPage";
     }
   }
+
+  @PatchMapping("/changepass")
+  public String changePassword(Model model,
+      String currentPassword,
+      String newPassword,
+      String confirmPassword,
+      Long userId){
+    Optional<User> userOptional = service.getUserById(userId);
+    if(userOptional.isPresent()){
+      User user = userOptional.get();
+      model.addAttribute("userId", userId);
+      if(!user.getPassword().equals(currentPassword)){
+        model.addAttribute("wrongPsw", "Invalid password");
+        return "authReg/changePasswordPage";
+      }
+      else if(!newPassword.equals(confirmPassword)){
+        model.addAttribute("notEqualPsws", "New passwords are not equal");
+        return "authReg/changePasswordPage";
+      }
+      user.setPassword(newPassword);
+      service.saveUser(user);
+      model.addAttribute("message", "Successful password change!");
+      return "utilPages/successPage";
+
+    }
+    model.addAttribute("error", "Something went wrong");
+    return "utilPages/errorPage";
+  }
+
+  @PatchMapping("/admchangepass")
+  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+  public String adminChangePassword(Model model, Long userId, String newPassword) {
+    Optional<User> userOptional = service.getUserById(userId);
+    if(userOptional.isPresent()){
+      User user = userOptional.get();
+      user.setPassword(newPassword);
+      service.saveUser(user);
+      model.addAttribute("message", "Successful password change!");
+      return "utilPages/successPage";
+    }
+    model.addAttribute("error", "Something went wrong");
+    return "utilPages/errorPage";
+
+
+  }
+
+
+
 
 
 }
