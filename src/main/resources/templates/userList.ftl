@@ -28,7 +28,9 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="hidden" name="_method" value="DELETE">
 
-            <button class="btn btn-primary" type="submit">Delete</button>
+            <#if !(user.username=="admin")>
+              <button class="btn btn-primary" type="submit">Delete</button>
+            </#if>
           </form>
         </th>
 
