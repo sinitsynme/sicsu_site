@@ -23,7 +23,7 @@
       <li class="list-group-item">Birth date: <b>${userData.getBirthDate()!}</b></li>
       <li class="list-group-item">E-mail: <b>${userData.getEmail()!}</b></li>
       <li class="list-group-item">Course: <b>${userData.getCourseNumber()!}</b></li>
-      <li class="list-group-item">Group number: <b>${userData.getGroupId()!}</b></li>
+      <li class="list-group-item">Group ID: <b>${userData.getGroupId()!}</b></li>
 
         <#if user.id == userData.getUser().id || isAdmin>
           <li class="list-group-item block">
