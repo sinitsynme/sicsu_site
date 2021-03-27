@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
+import ru.sinitsynme.sicsu_site.user.data.UserData;
 import ru.sinitsynme.sicsu_site.user.entity.User;
 
 @Entity
@@ -23,7 +23,7 @@ public class StudentData extends UserData {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "students_seq")
-  @SequenceGenerator(name = "students_seq", sequenceName = "SEQ_STUDENT", allocationSize=1)
+  @SequenceGenerator(name = "students_seq", sequenceName = "SEQ_STUDENT", allocationSize = 1)
   private Long id;
 
   private String firstName;
@@ -37,7 +37,7 @@ public class StudentData extends UserData {
   private String email;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable(name="students_groups", joinColumns = @JoinColumn(name = "student_data_id"), inverseJoinColumns = @JoinColumn(name="group_id"))
+  @JoinTable(name = "students_groups", joinColumns = @JoinColumn(name = "student_data_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Group studentGroup;
 
   private byte courseNumber;
@@ -106,8 +106,10 @@ public class StudentData extends UserData {
     this.courseNumber = courseNumber;
   }
 
-  public String getGroupId(){
-    if(studentGroup == null) return null;
+  public String getGroupId() {
+    if (studentGroup == null) {
+      return null;
+    }
     return studentGroup.getGroupFullId();
   }
 
