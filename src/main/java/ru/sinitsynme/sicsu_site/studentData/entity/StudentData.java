@@ -107,6 +107,7 @@ public class StudentData extends UserData {
   }
 
   public String getGroupId(){
+    if(studentGroup == null) return null;
     return studentGroup.getGroupFullId();
   }
 

@@ -37,14 +37,6 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 form-label" for="group">Group ID</label>
-        <div class="col-sm-4">
-          <input class="form-control" name="groupId" id="group" type="text"
-                 placeholder="${(userData.groupId)!"Group ID - later dropdown"}">
-        </div>
-      </div>
-
-      <div class="form-group row">
         <label class="col-sm-2 form-label" for="course">Course</label>
         <div class="col-sm-4">
           <input class="form-control" name="courseNumber" id="course" type="text"
