@@ -49,12 +49,14 @@ public class StudentDataController {
   public String registerStudent(StudentData student,
       String birthDate,
       Long userId,
+      String course,
       Model model) throws ParseException {
 
     Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);
     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
     student.setBirthDate(sqlDate);
+    student.setCourseNumber(Byte.parseByte(course));
 
     studentService.saveStudentData(student);
 
@@ -66,7 +68,7 @@ public class StudentDataController {
       userRegistering.setStudentData(student);
       userRegistering.setActive(true);
       userService.saveUser(userRegistering);
-      return "redirect:/users";
+      return "redirect:/users/" + userRegistering.getId();
     }
     else{
       model.addAttribute("error", "Something went wrong");
