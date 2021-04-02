@@ -36,7 +36,7 @@ public class StudentData extends UserData {
 
   private String email;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
   @JoinTable(name = "students_groups", joinColumns = @JoinColumn(name = "student_data_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Group studentGroup;
 
