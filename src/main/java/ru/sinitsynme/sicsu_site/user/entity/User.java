@@ -41,10 +41,10 @@ public class User implements UserDetails {
 
   private Boolean isActive;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private StudentData studentData;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private TeacherData teacherData;
 
 
