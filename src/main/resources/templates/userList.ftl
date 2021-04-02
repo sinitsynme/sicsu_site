@@ -1,7 +1,10 @@
 <#import "parts/common.ftl" as c>
 <@c.head pageName="Users | SICSU ADMIN">
 
-  <h5>List of users</h5>
+  <div style="color: lightcyan">
+    <h1>LIST OF USERS</h1>
+  </div>
+
   <table class="table" style="background-color: whitesmoke; width: auto">
     <thead class="thead-dark">
     <tr>
