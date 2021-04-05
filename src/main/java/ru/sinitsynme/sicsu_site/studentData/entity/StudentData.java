@@ -29,7 +29,7 @@ public class StudentData extends UserData {
   private String firstName;
   private String lastName;
 
-  @OneToOne(mappedBy = "studentData", cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "studentData", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private User user;
 
   private Date birthDate;

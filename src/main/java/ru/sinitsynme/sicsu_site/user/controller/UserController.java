@@ -32,7 +32,7 @@ public class UserController {
   }
 
   @GetMapping("/{id}")
-  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
   public String getUserPage(Model model, @PathVariable Long id){
     Optional<User> optionalUser = service.getUserById(id);
     if(optionalUser.isPresent()){
