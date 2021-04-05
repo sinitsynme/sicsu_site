@@ -34,8 +34,12 @@ public class RegistrationController {
 
   @PostMapping
   public String register(@RequestParam String confirm_psw, User user, Model model,
-      @RequestParam(required = false, defaultValue = "false") Boolean isStudent,
-      @RequestParam(required = false, defaultValue = "false") Boolean isTeacher) {
+      String dataType) {
+
+    if (dataType == null) {
+      model.addAttribute("message", "You have to choose a role!");
+      return "/authReg/registration";
+    }
 
     User dbUser = userService.getUserByUsername(user.getUsername());
 
@@ -49,15 +53,11 @@ public class RegistrationController {
       return "/authReg/registration";
     }
 
-    if (!(isStudent || isTeacher) || (isStudent && isTeacher)) {
-      model.addAttribute("message", "You have to choose only 1 role!");
-      return "/authReg/registration";
-    }
     user.setRoles(new HashSet<>());
 
-    if (isStudent) {
+    if (dataType.equals("Student")) {
       user.getRoles().add(Role.ROLE_STUDENT);
-    } else if (isTeacher) {
+    } else if (dataType.equals("Teacher")) {
       user.getRoles().add(Role.ROLE_TEACHER);
     }
     //maybe there will be some other roles
@@ -65,7 +65,7 @@ public class RegistrationController {
     userService.saveUser(user);
     model.addAttribute("userRegistering", user);
 
-    if (isStudent) {
+    if (dataType.equals("Student")) {
       return "/authReg/studentReg";
     } else {
       return "/authReg/teacherReg";

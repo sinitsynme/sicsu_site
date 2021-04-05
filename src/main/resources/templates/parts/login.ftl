@@ -34,11 +34,23 @@
               below</label>
           </div>
 
-          <div>
-            <label><input type="checkbox" name="isStudent">Student</label>
+<#--          <div>-->
+<#--            <label><input type="checkbox" name="isStudent">Student</label>-->
+<#--          </div>-->
+<#--          <div>-->
+<#--            <label><input type="checkbox" name="isTeacher">Teacher</label>-->
+<#--          </div>-->
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="radio" name="dataType"
+                   value="Student">
+            <label class="form-check-label" for="radio">Student</label>
           </div>
-          <div>
-            <label><input type="checkbox" name="isTeacher">Teacher</label>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="radio" name="dataType"
+                   value="Teacher">
+            <label class="form-check-label" for="radio">Teacher</label>
           </div>
 
         <#--          <div class="form-check">-->
