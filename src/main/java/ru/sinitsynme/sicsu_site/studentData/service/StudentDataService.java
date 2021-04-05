@@ -27,8 +27,11 @@ public class StudentDataService {
     return repository.findAll(Sort.by("lastName"));
   }
 
+  public List<StudentData> getStudentsByGroup(Long id) {return repository.findStudentsByGroup(id); }
+
   public void saveStudentData(StudentData studentData){
     repository.save(studentData);
   }
+
 
 }

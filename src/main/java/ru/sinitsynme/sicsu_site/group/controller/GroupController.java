@@ -14,16 +14,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.sinitsynme.sicsu_site.group.entity.Group;
 import ru.sinitsynme.sicsu_site.group.service.GroupService;
+import ru.sinitsynme.sicsu_site.studentData.entity.StudentData;
+import ru.sinitsynme.sicsu_site.studentData.service.StudentDataService;
 
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
 
   private final GroupService groupService;
+  private final StudentDataService studentDataService;
 
   @Autowired
-  public GroupController(GroupService groupService) {
+  public GroupController(GroupService groupService,
+      StudentDataService studentDataService) {
     this.groupService = groupService;
+    this.studentDataService = studentDataService;
   }
 
   @GetMapping
@@ -33,8 +38,6 @@ public class GroupController {
 
     return "/group/groupList";
 }
-
-  //get mapping {/id} - view students of the group
 
   @PreAuthorize("hasAuthority('ROLE_ADMIN')")
   @GetMapping("/new")
@@ -79,6 +82,29 @@ public class GroupController {
   public String deleteGroup(@PathVariable Long id){
     groupService.deleteByGroupId(id);
     return "redirect:/groups";
+  }
+
+
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
+  @GetMapping("/{id}/students")
+  public String viewStudentsByGroup(@PathVariable Long id, Model model){
+    List<StudentData> students = studentDataService.getStudentsByGroup(id);
+    Optional<Group> optionalGroup = groupService.getGroupById(id);
+
+    if(optionalGroup.isEmpty()){
+      model.addAttribute("error", "Something went wrong!");
+      return "/utilPages/errorPage";
+    }
+
+    model.addAttribute("group", optionalGroup.get());
+
+    if(students.size()==0){
+      model.addAttribute("message", "There are no students in this group!");
+      return "/group/studentList";
+    }
+
+    model.addAttribute("students", students);
+    return "/group/studentList";
   }
 
 

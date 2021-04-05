@@ -9,12 +9,18 @@
   </div>
 
     <#if isAdmin>
-      <div class="block">
+      <div class="block mt-3">
         <form action="/groups/new" method="get">
           <button class="btn btn-primary" type="submit">Add new group</button>
         </form>
       </div>
     </#if>
+
+  <#if isAdmin || isTeacher>
+    <div class="mt-3" style="color: whitesmoke">
+      <p>Click on a group description to view students of that group</p>
+    </div>
+  </#if>
 
   <table class="table mt-3" style="background-color: whitesmoke; width: auto">
     <thead class="thead-dark">
@@ -26,6 +32,9 @@
           <th scope="col"></th>
           <th scope="col"></th>
         </#if>
+      <#if isAdmin || isTeacher>
+        <th scope="col"></th>
+      </#if>
     </tr>
     </thead>
 
@@ -34,7 +43,14 @@
       <tr>
         <th scope="row">${group_index+1}</th>
         <th scope="row">${group.groupFullId}</th>
-        <th scope="row">${group.info}</th>
+        <#if isAdmin || isTeacher>
+            <th scope="row">
+              <a href="/groups/${group.id}/students">${group.info}</a>
+            </th>
+          <#else>
+            <th scope="row">${group.info}</th>
+        </#if>
+
 
           <#if isAdmin>
             <th scope="row">
@@ -53,7 +69,6 @@
 
           </#if>
 
-        <!--GET STUDENTS FROM A GROUP-->
       </tr>
     </#list>
 
