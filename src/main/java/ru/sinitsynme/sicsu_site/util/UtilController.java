@@ -3,9 +3,9 @@ package ru.sinitsynme.sicsu_site.util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sinitsynme.sicsu_site.user.entity.Role;
-import ru.sinitsynme.sicsu_site.user.entity.User;
-import ru.sinitsynme.sicsu_site.user.service.UserService;
+import ru.sinitsynme.sicsu_site.enums.Role;
+import ru.sinitsynme.sicsu_site.entity.User;
+import ru.sinitsynme.sicsu_site.service.UserService;
 
 import java.util.HashSet;
 import java.util.Set;
