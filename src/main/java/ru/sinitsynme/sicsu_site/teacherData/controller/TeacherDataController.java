@@ -12,23 +12,22 @@ import ru.sinitsynme.sicsu_site.teacherData.service.TeacherDataService;
 @RequestMapping("/teachers")
 public class TeacherDataController {
 
-  private final TeacherDataService teacherDataService;
+    private final TeacherDataService teacherDataService;
 
-  @Autowired
-  public TeacherDataController(
-      TeacherDataService teacherDataService) {
-    this.teacherDataService = teacherDataService;
-  }
-
-  @PostMapping("/new")
-  public String registerTeacher(TeacherData teacherData, Long userId, Model model){
-    if(teacherDataService.registerTeacher(teacherData, userId)){
-      return "redirect:/users";
+    @Autowired
+    public TeacherDataController(
+            TeacherDataService teacherDataService) {
+        this.teacherDataService = teacherDataService;
     }
-    model.addAttribute("error", "Something went wrong");
-    return "utilPages/errorPage";
-  }
 
+    @PostMapping("/new")
+    public String registerTeacher(TeacherData teacherData, Long userId, Model model) {
+        if (teacherDataService.registerTeacher(teacherData, userId)) {
+            return "redirect:/users";
+        }
+        model.addAttribute("error", "Something went wrong");
+        return "utilPages/errorPage";
+    }
 
 
 }

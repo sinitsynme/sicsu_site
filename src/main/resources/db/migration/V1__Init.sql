@@ -72,7 +72,7 @@ alter table if exists students_groups
     add constraint students_groups_group_fk foreign key (group_id) references groups;
 
 alter table if exists students_groups
-    add constraint students_groups_studdata_fk foreign key (student_data_id) references student_data;
+    add constraint students_groups_studdata_fk1 foreign key (student_data_id) references student_data on delete cascade;
 
 alter table if exists teacher_data_disciplines
     add constraint teacher_data_disc_fk foreign key (teacher_data_id) references teacher_data;
@@ -81,7 +81,7 @@ alter table if exists teachers_groups
     add constraint teachers_groups_group_fk foreign key (groups_id) references groups;
 
 alter table if exists teachers_groups
-    add constraint teachers_groups_teachdata_fk foreign key (teacher_id) references teacher_data;
+    add constraint teachers_groups_teachdata_fk1 foreign key (teacher_id) references teacher_data on delete cascade;
 
 alter table if exists user_role
     add constraint user_role_user_fk foreign key (user_id) references usr;

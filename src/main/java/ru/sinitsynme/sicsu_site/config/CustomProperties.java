@@ -7,15 +7,15 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "ru.sinitsynme")
 public class CustomProperties {
 
-  private String uploadPath;
+    private String uploadPath;
 
-  public String getUploadPath() {
-    return uploadPath;
-  }
+    public String getUploadPath() {
+        return uploadPath;
+    }
 
-  public void setUploadPath(String uploadPath) {
-    this.uploadPath = uploadPath;
-  }
+    public void setUploadPath(String uploadPath) {
+        this.uploadPath = uploadPath;
+    }
 }
 
 //for future uploads of files

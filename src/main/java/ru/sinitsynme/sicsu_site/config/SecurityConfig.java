@@ -13,30 +13,30 @@ import ru.sinitsynme.sicsu_site.user.service.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final UserDetailsServiceImpl userService;
+    private final UserDetailsServiceImpl userService;
 
-  @Autowired
-  public SecurityConfig(
-      UserDetailsServiceImpl userService) {
-    this.userService = userService;
-  }
+    @Autowired
+    public SecurityConfig(
+            UserDetailsServiceImpl userService) {
+        this.userService = userService;
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http
-        .authorizeRequests()
-        .antMatchers("/", "/home", "/info", "/static/**").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/home")
-        .failureForwardUrl("/login")
-        .and()
-        .logout()
-        .permitAll().logoutSuccessUrl("/home").permitAll();
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/home", "/info", "/static/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/home")
+                .failureForwardUrl("/login")
+                .and()
+                .logout()
+                .permitAll().logoutSuccessUrl("/home").permitAll();
+    }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(NoOpPasswordEncoder.getInstance());
-  }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+    }
 }
