@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.sinitsynme.sicsu_site.entity.Group;
 import ru.sinitsynme.sicsu_site.service.GroupService;
-import ru.sinitsynme.sicsu_site.entity.StudentData;
+import ru.sinitsynme.sicsu_site.entity.Student;
 import ru.sinitsynme.sicsu_site.service.StudentDataService;
 
 import java.util.List;
@@ -84,7 +84,7 @@ public class GroupController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
     @GetMapping("/{id}/students")
     public String viewStudentsByGroup(@PathVariable Long id, Model model) {
-        List<StudentData> students = studentDataService.getStudentsByGroup(id);
+        List<Student> students = studentDataService.getStudentsByGroup(id);
         Optional<Group> optionalGroup = groupService.getGroupById(id);
 
         if (optionalGroup.isEmpty()) {

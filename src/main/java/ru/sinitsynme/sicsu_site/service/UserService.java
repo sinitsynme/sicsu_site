@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import ru.sinitsynme.sicsu_site.entity.UserData;
 import ru.sinitsynme.sicsu_site.entity.User;
 import ru.sinitsynme.sicsu_site.repository.UserRepository;
 import ru.sinitsynme.sicsu_site.service.impl.UserDetailsServiceImpl;
@@ -50,15 +49,15 @@ public class UserService {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    public Optional<UserData> getCurrentUserData() {
-        User currentUser = getCurrentUser();
-        if (currentUser.isStudent()) {
-            return Optional.ofNullable(currentUser.getStudentData());
-        } else if (currentUser.isTeacher()) {
-            return Optional.ofNullable(currentUser.getTeacherData());
-        }
-        return Optional.empty();
-    }
+//    public Optional<UserData> getCurrentUserData() {
+//        User currentUser = getCurrentUser();
+//        if (currentUser.isStudent()) {
+//            return Optional.ofNullable(currentUser.getStudentData());
+//        } else if (currentUser.isTeacher()) {
+//            return Optional.ofNullable(currentUser.getTeacherData());
+//        }
+//        return Optional.empty();
+//    }
 
     public void deleteUser(User user) {
         userRepository.delete(user);

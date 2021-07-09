@@ -1,41 +1,48 @@
 package ru.sinitsynme.sicsu_site.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "groups")
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_seq")
-    @SequenceGenerator(name = "groups_seq", sequenceName = "SEQ_GROUP", allocationSize = 1)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     private String groupFullId;
 
-    private String info;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "program_id")
+    private Program program;
 
-    @OneToMany(mappedBy = "studentGroup")
-    private Set<StudentData> students;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "group")
+    private List<Student> students;
 
-    @ManyToMany(mappedBy = "groups")
-    private Set<TeacherData> teachers;
+    public Group() {
+    }
 
-    public Long getId() {
+    public Group(String groupFullId, Program program) {
+        this.groupFullId = groupFullId;
+        this.program = program;
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public String getInfo() {
-        return info;
+    public Program getProgram() {
+        return program;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
     public String getGroupFullId() {
@@ -46,19 +53,13 @@ public class Group {
         this.groupFullId = groupFullId;
     }
 
-    public Set<StudentData> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<StudentData> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 
-    public Set<TeacherData> getTeachers() {
-        return teachers;
-    }
 
-    public void setTeachers(Set<TeacherData> teachers) {
-        this.teachers = teachers;
-    }
 }

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import ru.sinitsynme.sicsu_site.entity.Group;
 import ru.sinitsynme.sicsu_site.repository.GroupRepository;
-import ru.sinitsynme.sicsu_site.entity.StudentData;
+import ru.sinitsynme.sicsu_site.entity.Student;
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,13 +41,13 @@ public class GroupService {
     public Optional<Group> getGroupById(Long id) {
         return groupRepository.findById(id);
     }
-
-    public void addStudentToGroup(Group group, StudentData student) {
-        if (group.getStudents() == null) {
-            group.setStudents(new HashSet<>());
-        }
-        group.getStudents().add(student);
-    }
+//
+//    public void addStudentToGroup(Group group, Student student) {
+//        if (group.getStudents() == null) {
+//            group.setStudents(new HashSet<>());
+//        }
+//        group.getStudents().add(student);
+//    }
 
 
 }

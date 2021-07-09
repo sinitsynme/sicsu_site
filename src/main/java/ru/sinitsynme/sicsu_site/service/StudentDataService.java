@@ -3,7 +3,7 @@ package ru.sinitsynme.sicsu_site.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.sinitsynme.sicsu_site.entity.StudentData;
+import ru.sinitsynme.sicsu_site.entity.Student;
 import ru.sinitsynme.sicsu_site.repository.StudentDataRepository;
 
 import java.util.List;
@@ -20,20 +20,20 @@ public class StudentDataService {
         this.repository = repository;
     }
 
-    public Optional<StudentData> getStudentDataById(Long id) {
+    public Optional<Student> getStudentDataById(Long id) {
         return repository.findById(id);
     }
 
-    public List<StudentData> getAllStudents() {
+    public List<Student> getAllStudents() {
         return repository.findAll(Sort.by("lastName"));
     }
 
-    public List<StudentData> getStudentsByGroup(Long id) {
+    public List<Student> getStudentsByGroup(Long id) {
         return repository.findStudentsByGroup(id);
     }
 
-    public void saveStudentData(StudentData studentData) {
-        repository.save(studentData);
+    public void saveStudentData(Student student) {
+        repository.save(student);
     }
 
 

@@ -2,72 +2,79 @@ package ru.sinitsynme.sicsu_site.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.sinitsynme.sicsu_site.enums.Role;
+import ru.sinitsynme.sicsu_site.enums.UserRole;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
-    @SequenceGenerator(name = "users_seq", sequenceName = "SEQ_USER", allocationSize = 1)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    @ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
+    @ElementCollection(fetch = FetchType.EAGER, targetClass = UserRole.class)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<UserRole> roles;
 
     private String username;
 
     private String password;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private StudentData studentData;
+    private Boolean credentialsNonExpired = false;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private TeacherData teacherData;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Student student;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Teacher teacher;
 
     public User() {
     }
 
-    public Set<Role> getRoles() {
+    public User(Set<UserRole> roles, String username, String password) {
+        this.roles = roles;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Set<UserRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public StudentData getStudentData() {
-        return studentData;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentData(StudentData studentData) {
-        this.studentData = studentData;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public TeacherData getTeacherData() {
-        return teacherData;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherData(TeacherData teacherData) {
-        this.teacherData = teacherData;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     @Override
@@ -93,10 +100,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public Boolean getActive() {
-        return isActive;
-    }
-
     public void setActive(Boolean active) {
         isActive = active;
     }
@@ -113,7 +116,11 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     @Override
@@ -122,15 +129,16 @@ public class User implements UserDetails {
     }
 
     public boolean isAdmin() {
-        return roles.contains(Role.ROLE_ADMIN);
+        return roles.contains(UserRole.ROLE_ADMIN);
     }
 
     public boolean isStudent() {
-        return roles.contains(Role.ROLE_STUDENT);
+        return roles.contains(UserRole.ROLE_STUDENT);
     }
 
     public boolean isTeacher() {
-        return roles.contains(Role.ROLE_TEACHER);
+        return roles.contains(UserRole.ROLE_TEACHER);
     }
+
 
 }

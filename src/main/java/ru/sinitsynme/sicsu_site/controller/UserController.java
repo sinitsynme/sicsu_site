@@ -28,27 +28,27 @@ public class UserController {
         return "userList";
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
-    public String getUserPage(Model model, @PathVariable Long id) {
-        Optional<User> optionalUser = service.getUserById(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (user.getStudentData() != null) {
-                model.addAttribute("userData", user.getStudentData());
-                return "cabinet/student";
-            } else if (user.getTeacherData() != null) {
-                model.addAttribute("userData", user.getTeacherData());
-                return "cabinet/teacher";
-            } else {
-                model.addAttribute("error", "Data is unavailable");
-                return "utilPages/errorPage";
-            }
-        } else {
-            model.addAttribute("error", "Cannot find user with such id");
-            return "utilPages/errorPage";
-        }
-    }
+//    @GetMapping("/{id}")
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')")
+//    public String getUserPage(Model model, @PathVariable Long id) {
+//        Optional<User> optionalUser = service.getUserById(id);
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            if (user.getStudentData() != null) {
+//                model.addAttribute("userData", user.getStudentData());
+//                return "cabinet/student";
+//            } else if (user.getTeacherData() != null) {
+//                model.addAttribute("userData", user.getTeacherData());
+//                return "cabinet/teacher";
+//            } else {
+//                model.addAttribute("error", "Data is unavailable");
+//                return "utilPages/errorPage";
+//            }
+//        } else {
+//            model.addAttribute("error", "Cannot find user with such id");
+//            return "utilPages/errorPage";
+//        }
+//    }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -67,28 +67,28 @@ public class UserController {
         return "utilPages/errorPage";
     }
 
-    @GetMapping("/{id}/edit")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String getEditForm(Model model, @PathVariable Long id) {
-        Optional<User> userOptional = service.getUserById(id);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            model.addAttribute("userRegistering", user);
-            if (user.getStudentData() != null) {
-                model.addAttribute("userData", user.getStudentData());
-                return "authReg/studentReg";
-            } else if (user.getTeacherData() != null) {
-                model.addAttribute("userData", user.getTeacherData());
-                return "authReg/teacherReg";
-            } else {
-                model.addAttribute("error", "Data is unavailable");
-                return "utilPages/errorPage";
-            }
-        } else {
-            model.addAttribute("error", "Cannot find user with such id");
-            return "utilPages/errorPage";
-        }
-    }
+//    @GetMapping("/{id}/edit")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    public String getEditForm(Model model, @PathVariable Long id) {
+//        Optional<User> userOptional = service.getUserById(id);
+//        if (userOptional.isPresent()) {
+//            User user = userOptional.get();
+//            model.addAttribute("userRegistering", user);
+//            if (user.getStudentData() != null) {
+//                model.addAttribute("userData", user.getStudentData());
+//                return "authReg/studentReg";
+//            } else if (user.getTeacherData() != null) {
+//                model.addAttribute("userData", user.getTeacherData());
+//                return "authReg/teacherReg";
+//            } else {
+//                model.addAttribute("error", "Data is unavailable");
+//                return "utilPages/errorPage";
+//            }
+//        } else {
+//            model.addAttribute("error", "Cannot find user with such id");
+//            return "utilPages/errorPage";
+//        }
+//    }
 
     @PatchMapping("/changepass")
     public String changePassword(Model model,

@@ -3,7 +3,7 @@ package ru.sinitsynme.sicsu_site.util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sinitsynme.sicsu_site.enums.Role;
+import ru.sinitsynme.sicsu_site.enums.UserRole;
 import ru.sinitsynme.sicsu_site.entity.User;
 import ru.sinitsynme.sicsu_site.service.UserService;
 
@@ -27,8 +27,8 @@ public class UtilController {
         User admin = new User();
         admin.setUsername("admin");
         admin.setPassword("sicsu_admin2021");
-        Set<Role> roles = new HashSet<>();
-        roles.add(Role.ROLE_ADMIN);
+        Set<UserRole> roles = new HashSet<>();
+        roles.add(UserRole.ROLE_ADMIN);
         admin.setRoles(roles);
         admin.setActive(true);
 

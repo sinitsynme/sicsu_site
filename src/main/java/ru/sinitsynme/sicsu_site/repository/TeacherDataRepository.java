@@ -3,12 +3,12 @@ package ru.sinitsynme.sicsu_site.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
-import ru.sinitsynme.sicsu_site.entity.TeacherData;
+import ru.sinitsynme.sicsu_site.entity.Teacher;
 
 import java.util.Optional;
 
 @Repository
-public interface TeacherDataRepository extends JpaRepository<TeacherData, Long> {
+public interface TeacherDataRepository extends JpaRepository<Teacher, Long> {
 
     //find all by groupId
 
@@ -17,7 +17,7 @@ public interface TeacherDataRepository extends JpaRepository<TeacherData, Long> 
     //find by last name
 
     @NonNull
-    Optional<TeacherData> findById(@NonNull Long id);
+    Optional<Teacher> findById(@NonNull Long id);
 
 
 }

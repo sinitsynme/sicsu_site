@@ -6,9 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sinitsynme.sicsu_site.entity.StudentData;
-import ru.sinitsynme.sicsu_site.entity.TeacherData;
-import ru.sinitsynme.sicsu_site.entity.UserData;
+import ru.sinitsynme.sicsu_site.entity.Student;
+import ru.sinitsynme.sicsu_site.entity.Teacher;
 import ru.sinitsynme.sicsu_site.service.UserService;
 
 import java.util.Optional;
@@ -28,16 +27,16 @@ public class CabinetController {
 
     @GetMapping
     public String getCabinetPage(Model model) {
-        Optional<UserData> optionalUserData = userService.getCurrentUserData();
-        if (optionalUserData.isPresent()) {
-            UserData userData = optionalUserData.get();
-            model.addAttribute("userData", userData);
-            if (userData instanceof StudentData) {
-                return "cabinet/student";
-            } else if (userData instanceof TeacherData) {
-                return "cabinet/teacher";
-            }
-        }
+//        Optional<UserData> optionalUserData = userService.getCurrentUserData();
+//        if (optionalUserData.isPresent()) {
+//            UserData userData = optionalUserData.get();
+//            model.addAttribute("userData", userData);
+//            if (userData instanceof Student) {
+//                return "cabinet/student";
+//            } else if (userData instanceof Teacher) {
+//                return "cabinet/teacher";
+//            }
+//        }
         model.addAttribute("error", "Missing data");
         return "utilPages/errorPage";
     }

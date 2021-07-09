@@ -10,10 +10,12 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
   freemarker:
     suffix: .ftl
     expose-request-attributes: true
+  flyway:
+    enabled: false
 
 
 upload.path: /C:/Users/sinit/OneDrive/Рабочий стол/Java/sicsu_files

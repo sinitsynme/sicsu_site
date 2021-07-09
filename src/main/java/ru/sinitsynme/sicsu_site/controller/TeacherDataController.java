@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sinitsynme.sicsu_site.entity.TeacherData;
+import ru.sinitsynme.sicsu_site.entity.Teacher;
 import ru.sinitsynme.sicsu_site.service.TeacherDataService;
 
 @Controller
@@ -21,8 +21,8 @@ public class TeacherDataController {
     }
 
     @PostMapping("/new")
-    public String registerTeacher(TeacherData teacherData, Long userId, Model model) {
-        if (teacherDataService.registerTeacher(teacherData, userId)) {
+    public String registerTeacher(Teacher teacher, Long userId, Model model) {
+        if (teacherDataService.registerTeacher(teacher, userId)) {
             return "redirect:/users";
         }
         model.addAttribute("error", "Something went wrong");

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.sinitsynme.sicsu_site.enums.Role;
+import ru.sinitsynme.sicsu_site.enums.UserRole;
 import ru.sinitsynme.sicsu_site.entity.User;
 import ru.sinitsynme.sicsu_site.service.UserService;
 
@@ -57,9 +57,9 @@ public class RegistrationController {
         user.setRoles(new HashSet<>());
 
         if (dataType.equals("Student")) {
-            user.getRoles().add(Role.ROLE_STUDENT);
+            user.getRoles().add(UserRole.ROLE_STUDENT);
         } else if (dataType.equals("Teacher")) {
-            user.getRoles().add(Role.ROLE_TEACHER);
+            user.getRoles().add(UserRole.ROLE_TEACHER);
         }
         //maybe there will be some other roles
 
