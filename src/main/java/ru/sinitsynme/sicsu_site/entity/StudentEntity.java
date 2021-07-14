@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class StudentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,16 +18,14 @@ public class Student {
 
     private Date birthDate;
 
-    private String email;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
-    private Group group;
+    private GroupEntity group;
 
-    public Student(){
+    public StudentEntity() {
     }
 
-    public Student(String firstName, String lastName, Date birthDate) {
+    public StudentEntity(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -39,14 +37,6 @@ public class Student {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFirstName() {
@@ -73,11 +63,11 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    public Group getGroup() {
+    public GroupEntity getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(GroupEntity group) {
         this.group = group;
     }
 

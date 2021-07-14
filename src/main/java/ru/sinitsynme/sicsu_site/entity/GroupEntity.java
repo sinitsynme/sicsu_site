@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "groups")
-public class Group {
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,15 +16,15 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "program_id")
-    private Program program;
+    private ProgramEntity program;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "group")
-    private List<Student> students;
+    private List<StudentEntity> students;
 
-    public Group() {
+    public GroupEntity() {
     }
 
-    public Group(String groupFullId, Program program) {
+    public GroupEntity(String groupFullId, ProgramEntity program) {
         this.groupFullId = groupFullId;
         this.program = program;
     }
@@ -37,11 +37,11 @@ public class Group {
         this.id = id;
     }
 
-    public Program getProgram() {
+    public ProgramEntity getProgram() {
         return program;
     }
 
-    public void setProgram(Program program) {
+    public void setProgram(ProgramEntity program) {
         this.program = program;
     }
 
@@ -53,11 +53,11 @@ public class Group {
         this.groupFullId = groupFullId;
     }
 
-    public List<Student> getStudents() {
+    public List<StudentEntity> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(List<StudentEntity> students) {
         this.students = students;
     }
 

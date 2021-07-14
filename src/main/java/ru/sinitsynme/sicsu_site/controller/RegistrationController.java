@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.sinitsynme.sicsu_site.enums.UserRole;
-import ru.sinitsynme.sicsu_site.entity.User;
+import ru.sinitsynme.sicsu_site.entity.UserEntity;
 import ru.sinitsynme.sicsu_site.service.UserService;
 
 import java.util.HashSet;
@@ -34,7 +34,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String register(@RequestParam String confirm_psw, User user, Model model,
+    public String register(@RequestParam String confirm_psw, UserEntity user, Model model,
                            String dataType) {
 
         if (dataType == null) {
@@ -42,7 +42,7 @@ public class RegistrationController {
             return "/authReg/registration";
         }
 
-        User dbUser = userService.getUserByUsername(user.getUsername());
+        UserEntity dbUser = userService.getUserByUsername(user.getUsername());
 
         if (!user.getPassword().equals(confirm_psw)) {
             model.addAttribute("message", "The passwords are not equal!");

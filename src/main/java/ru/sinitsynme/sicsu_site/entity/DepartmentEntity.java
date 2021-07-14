@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Department {
+public class DepartmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,16 +14,16 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Teacher> teacherList;
+    private List<TeacherEntity> teacherList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
-    private Faculty faculty;
+    private FacultyEntity faculty;
 
-    public Department() {
+    public DepartmentEntity() {
     }
 
-    public Department(String name) {
+    public DepartmentEntity(String name) {
         this.name = name;
     }
 
@@ -43,19 +43,19 @@ public class Department {
         this.name = name;
     }
 
-    public List<Teacher> getTeacherList() {
+    public List<TeacherEntity> getTeacherList() {
         return teacherList;
     }
 
-    public void setTeacherList(List<Teacher> teacherList) {
+    public void setTeacherList(List<TeacherEntity> teacherList) {
         this.teacherList = teacherList;
     }
 
-    public Faculty getFaculty() {
+    public FacultyEntity getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(FacultyEntity faculty) {
         this.faculty = faculty;
     }
 }

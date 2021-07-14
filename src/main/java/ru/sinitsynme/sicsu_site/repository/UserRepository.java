@@ -2,11 +2,11 @@ package ru.sinitsynme.sicsu_site.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.sinitsynme.sicsu_site.entity.User;
+import ru.sinitsynme.sicsu_site.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    User findByUsername(String username);
+    UserEntity findByUsername(String username);
 
 }

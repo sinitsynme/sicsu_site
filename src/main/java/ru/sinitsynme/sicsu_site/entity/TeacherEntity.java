@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Entity
-public class Teacher {
+public class TeacherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,16 +17,14 @@ public class Teacher {
 
     private Date birthDate;
 
-    private String email;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
-    private Department department;
+    private DepartmentEntity department;
 
-    public Teacher() {
+    public TeacherEntity() {
     }
 
-    public Teacher(String firstName, String lastName, Date birthDate) {
+    public TeacherEntity(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -48,14 +46,6 @@ public class Teacher {
         this.birthDate = birthDate;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -72,11 +62,11 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public Department getDepartment() {
+    public DepartmentEntity getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(DepartmentEntity department) {
         this.department = department;
     }
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "usr")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,23 +26,33 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String email;
+
     private Boolean isActive = true;
 
     private Boolean credentialsNonExpired = false;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Student student;
+    private StudentEntity student;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Teacher teacher;
+    private TeacherEntity teacher;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Set<UserRole> roles, String username, String password) {
+    public UserEntity(Set<UserRole> roles, String username, String password) {
         this.roles = roles;
         this.username = username;
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<UserRole> getRoles() {
@@ -61,19 +71,19 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public Student getStudent() {
+    public StudentEntity getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(StudentEntity student) {
         this.student = student;
     }
 
-    public Teacher getTeacher() {
+    public TeacherEntity getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(TeacherEntity teacher) {
         this.teacher = teacher;
     }
 

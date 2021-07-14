@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Faculty {
+public class FacultyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,15 +14,15 @@ public class Faculty {
     private String name;
 
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
-    private List<Department> departments;
+    private List<DepartmentEntity> departments;
 
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
-    private List<Program> programList;
+    private List<ProgramEntity> programList;
 
-    public Faculty() {
+    public FacultyEntity() {
     }
 
-    public Faculty(String name) {
+    public FacultyEntity(String name) {
         this.name = name;
     }
 
@@ -42,19 +42,19 @@ public class Faculty {
         this.name = name;
     }
 
-    public List<Department> getDepartments() {
+    public List<DepartmentEntity> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(List<Department> departments) {
+    public void setDepartments(List<DepartmentEntity> departments) {
         this.departments = departments;
     }
 
-    public List<Program> getProgramList() {
+    public List<ProgramEntity> getProgramList() {
         return programList;
     }
 
-    public void setProgramList(List<Program> programList) {
+    public void setProgramList(List<ProgramEntity> programList) {
         this.programList = programList;
     }
 }

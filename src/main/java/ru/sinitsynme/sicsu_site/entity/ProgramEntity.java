@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Program {
+public class ProgramEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,17 +19,17 @@ public class Program {
     private ProgramType type;
 
     @OneToMany(mappedBy = "program")
-    private List<Group> groupList;
+    private List<GroupEntity> groupList;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
-    private Faculty faculty;
+    private FacultyEntity faculty;
 
 
-    public Program() {
+    public ProgramEntity() {
     }
 
-    public Program(String name, ProgramType type) {
+    public ProgramEntity(String name, ProgramType type) {
         this.name = name;
         this.type = type;
     }
@@ -58,19 +58,19 @@ public class Program {
         this.type = type;
     }
 
-    public List<Group> getGroupList() {
+    public List<GroupEntity> getGroupList() {
         return groupList;
     }
 
-    public void setGroupList(List<Group> groupList) {
+    public void setGroupList(List<GroupEntity> groupList) {
         this.groupList = groupList;
     }
 
-    public Faculty getFaculty() {
+    public FacultyEntity getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(FacultyEntity faculty) {
         this.faculty = faculty;
     }
 }
