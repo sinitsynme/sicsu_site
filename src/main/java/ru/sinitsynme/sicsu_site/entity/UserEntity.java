@@ -6,6 +6,7 @@ import ru.sinitsynme.sicsu_site.enums.UserRole;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class UserEntity implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER, targetClass = UserRole.class)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<UserRole> roles;
+    private Set<UserRole> roles = new HashSet<>();
 
     private String username;
 
@@ -37,6 +38,9 @@ public class UserEntity implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private TeacherEntity teacher;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private PersonalDataEntity personalData;
 
     public UserEntity() {
     }
@@ -75,16 +79,16 @@ public class UserEntity implements UserDetails {
         return student;
     }
 
-    public void setStudent(StudentEntity student) {
-        this.student = student;
-    }
-
     public TeacherEntity getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(TeacherEntity teacher) {
-        this.teacher = teacher;
+    public PersonalDataEntity getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(PersonalDataEntity personalData) {
+        this.personalData = personalData;
     }
 
     @Override
@@ -146,8 +150,16 @@ public class UserEntity implements UserDetails {
         return roles.contains(UserRole.ROLE_STUDENT);
     }
 
+    public void setStudent(StudentEntity student) {
+        this.student = student;
+    }
+
     public boolean isTeacher() {
         return roles.contains(UserRole.ROLE_TEACHER);
+    }
+
+    public void setTeacher(TeacherEntity teacher) {
+        this.teacher = teacher;
     }
 
 

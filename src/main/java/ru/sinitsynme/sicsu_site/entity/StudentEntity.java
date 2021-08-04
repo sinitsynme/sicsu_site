@@ -12,23 +12,16 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String firstName;
-
-    private String lastName;
-
-    private Date birthDate;
+    private String info;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
     private GroupEntity group;
 
-    public StudentEntity() {
-    }
+    @OneToOne(fetch = FetchType.EAGER)
+    private PersonalDataEntity personalData;
 
-    public StudentEntity(String firstName, String lastName, Date birthDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
+    public StudentEntity() {
     }
 
     public UUID getId() {
@@ -39,30 +32,6 @@ public class StudentEntity {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public GroupEntity getGroup() {
         return group;
     }
@@ -71,5 +40,19 @@ public class StudentEntity {
         this.group = group;
     }
 
+    public String getInfo() {
+        return info;
+    }
 
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public PersonalDataEntity getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(PersonalDataEntity personalData) {
+        this.personalData = personalData;
+    }
 }

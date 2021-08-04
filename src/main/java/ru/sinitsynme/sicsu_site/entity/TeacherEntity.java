@@ -5,29 +5,25 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Entity
+@Table(name = "teacher")
 public class TeacherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String firstName;
+    @OneToOne(fetch = FetchType.EAGER)
+    private PersonalDataEntity personalData;
 
-    private String lastName;
+    private String info;
 
-    private Date birthDate;
+    private String achievements;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private DepartmentEntity department;
 
     public TeacherEntity() {
-    }
-
-    public TeacherEntity(String firstName, String lastName, Date birthDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
     }
 
     public UUID getId() {
@@ -38,28 +34,28 @@ public class TeacherEntity {
         this.id = id;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public PersonalDataEntity getPersonalData() {
+        return personalData;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setPersonalData(PersonalDataEntity personalData) {
+        this.personalData = personalData;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getInfo() {
+        return info;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAchievements() {
+        return achievements;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAchievements(String achievements) {
+        this.achievements = achievements;
     }
 
     public DepartmentEntity getDepartment() {

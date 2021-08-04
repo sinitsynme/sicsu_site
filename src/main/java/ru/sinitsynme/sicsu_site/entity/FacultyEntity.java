@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "faculty")
 public class FacultyEntity {
 
     @Id
