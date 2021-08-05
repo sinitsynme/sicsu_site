@@ -1,28 +1,25 @@
 package ru.sinitsynme.sicsu_site.rest.dto;
 
-import java.sql.Date;
 import java.util.UUID;
 
 public class StudentResponseDto {
 
     private UUID id;
 
-    private String firstName;
+    private String info;
 
-    private String lastName;
-
-    private Date date;
+    private PersonalDataResponseDto personalDataResponseDto;
 
     private GroupResponseDto groupResponseDto;
 
     public StudentResponseDto() {
     }
 
-    public StudentResponseDto(UUID id, String firstName, String lastName, Date date) {
+    public StudentResponseDto(UUID id, String info, PersonalDataResponseDto personalDataResponseDto, GroupResponseDto groupResponseDto) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.date = date;
+        this.info = info;
+        this.personalDataResponseDto = personalDataResponseDto;
+        this.groupResponseDto = groupResponseDto;
     }
 
     public UUID getId() {
@@ -33,28 +30,20 @@ public class StudentResponseDto {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getInfo() {
+        return info;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getLastName() {
-        return lastName;
+    public PersonalDataResponseDto getPersonalDataResponseDto() {
+        return personalDataResponseDto;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPersonalDataResponseDto(PersonalDataResponseDto personalDataResponseDto) {
+        this.personalDataResponseDto = personalDataResponseDto;
     }
 
     public GroupResponseDto getGroupResponseDto() {

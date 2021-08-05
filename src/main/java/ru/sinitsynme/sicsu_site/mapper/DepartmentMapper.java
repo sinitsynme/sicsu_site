@@ -7,7 +7,7 @@ import ru.sinitsynme.sicsu_site.entity.DepartmentEntity;
 import ru.sinitsynme.sicsu_site.rest.dto.DepartmentRequestDto;
 import ru.sinitsynme.sicsu_site.rest.dto.DepartmentResponseDto;
 
-@Mapper(componentModel = "spring", uses = {FacultyMapper.class}, injectionStrategy = InjectionStrategy.FIELD)
+@Mapper(componentModel = "spring", uses = {FacultyMapper.class})
 public interface DepartmentMapper {
 
     DepartmentResponseDto toResponseDto(DepartmentEntity department);

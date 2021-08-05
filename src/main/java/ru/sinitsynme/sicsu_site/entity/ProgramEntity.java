@@ -19,7 +19,7 @@ public class ProgramEntity {
     @Enumerated(EnumType.STRING)
     private ProgramType type;
 
-    @OneToMany(mappedBy = "program")
+    @OneToMany(mappedBy = "program", fetch = FetchType.LAZY)
     private List<GroupEntity> groupList;
 
     @ManyToOne(fetch = FetchType.EAGER)

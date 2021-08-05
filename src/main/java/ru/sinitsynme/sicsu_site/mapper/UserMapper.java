@@ -3,10 +3,10 @@ package ru.sinitsynme.sicsu_site.mapper;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import ru.sinitsynme.sicsu_site.entity.UserEntity;
-import ru.sinitsynme.sicsu_site.rest.dto.UserRegistrationDto;
+import ru.sinitsynme.sicsu_site.rest.dto.UserRequestDto;
 import ru.sinitsynme.sicsu_site.rest.dto.UserResponseDto;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {PersonalDataMapper.class})
 public interface UserMapper {
 
     UserResponseDto toResponseDto(UserEntity entity);
@@ -14,9 +14,10 @@ public interface UserMapper {
     @InheritInverseConfiguration
     UserEntity toEntity(UserResponseDto responseDto);
 
-    UserRegistrationDto toRequestDto(UserEntity entity);
+    UserRequestDto toRequestDto(UserEntity entity);
 
     @InheritInverseConfiguration
-    UserEntity toEntity(UserRegistrationDto requestDto);
+    UserEntity toEntity(UserRequestDto requestDto);
+
 
 }

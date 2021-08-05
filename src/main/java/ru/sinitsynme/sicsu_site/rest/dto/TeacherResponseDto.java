@@ -1,28 +1,21 @@
 package ru.sinitsynme.sicsu_site.rest.dto;
 
-import java.sql.Date;
 import java.util.UUID;
 
 public class TeacherResponseDto {
 
     private UUID id;
 
-    private String firstName;
-
-    private String lastName;
-
-    private Date date;
+    private PersonalDataResponseDto personalDataResponseDto;
 
     private DepartmentResponseDto departmentResponseDto;
 
     public TeacherResponseDto() {
     }
 
-    public TeacherResponseDto(UUID id, String firstName, String lastName, Date date) {
+    public TeacherResponseDto(UUID id, PersonalDataResponseDto personalDataResponseDto) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.date = date;
+        this.personalDataResponseDto = personalDataResponseDto;
     }
 
     public UUID getId() {
@@ -33,28 +26,12 @@ public class TeacherResponseDto {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public PersonalDataResponseDto getPersonalDataResponseDto() {
+        return personalDataResponseDto;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPersonalDataResponseDto(PersonalDataResponseDto personalDataResponseDto) {
+        this.personalDataResponseDto = personalDataResponseDto;
     }
 
     public DepartmentResponseDto getDepartmentResponseDto() {

@@ -1,6 +1,7 @@
 package ru.sinitsynme.sicsu_site.mapper;
 
 import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import ru.sinitsynme.sicsu_site.entity.ProgramEntity;
 import ru.sinitsynme.sicsu_site.rest.dto.ProgramRequestDto;

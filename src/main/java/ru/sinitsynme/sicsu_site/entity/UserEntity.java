@@ -27,8 +27,6 @@ public class UserEntity implements UserDetails {
 
     private String password;
 
-    private String email;
-
     private Boolean isActive = true;
 
     private Boolean credentialsNonExpired = false;
@@ -39,7 +37,7 @@ public class UserEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private TeacherEntity teacher;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private PersonalDataEntity personalData;
 
     public UserEntity() {
@@ -49,14 +47,6 @@ public class UserEntity implements UserDetails {
         this.roles = roles;
         this.username = username;
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Set<UserRole> getRoles() {

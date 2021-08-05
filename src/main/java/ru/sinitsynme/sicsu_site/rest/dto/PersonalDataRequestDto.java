@@ -1,16 +1,8 @@
-package ru.sinitsynme.sicsu_site.entity;
+package ru.sinitsynme.sicsu_site.rest.dto;
 
-import javax.persistence.*;
 import java.sql.Date;
-import java.util.UUID;
 
-@Entity
-@Table(name = "personal_data")
-public class PersonalDataEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class PersonalDataRequestDto {
 
     private String firstName;
 
@@ -22,23 +14,15 @@ public class PersonalDataEntity {
 
     private String email;
 
-    public PersonalDataEntity() {
+    public PersonalDataRequestDto() {
     }
 
-    public PersonalDataEntity(String firstName, String lastName, String patronymic, Date birthDate, String email) {
+    public PersonalDataRequestDto(String firstName, String lastName, String patronymic, Date birthDate, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.birthDate = birthDate;
         this.email = email;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getFirstName() {

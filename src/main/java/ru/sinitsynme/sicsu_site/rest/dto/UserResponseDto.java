@@ -3,12 +3,15 @@ package ru.sinitsynme.sicsu_site.rest.dto;
 import ru.sinitsynme.sicsu_site.enums.UserRole;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class UserResponseDto {
 
-    private String username;
+    private UUID id;
 
-    private String email;
+    private PersonalDataResponseDto responseDto;
+
+    private String username;
 
     private boolean isActive;
 
@@ -19,12 +22,29 @@ public class UserResponseDto {
     public UserResponseDto() {
     }
 
-    public UserResponseDto(String username, String email, boolean isActive, Set<UserRole> userRoleSet, boolean credentialsNonExpired) {
+    public UserResponseDto(UUID id, PersonalDataResponseDto responseDto, String username, boolean isActive, Set<UserRole> userRoleSet, boolean credentialsNonExpired) {
+        this.id = id;
+        this.responseDto = responseDto;
         this.username = username;
-        this.email = email;
         this.isActive = isActive;
         this.userRoleSet = userRoleSet;
         this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public PersonalDataResponseDto getResponseDto() {
+        return responseDto;
+    }
+
+    public void setResponseDto(PersonalDataResponseDto responseDto) {
+        this.responseDto = responseDto;
     }
 
     public String getUsername() {
@@ -33,14 +53,6 @@ public class UserResponseDto {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public boolean isActive() {

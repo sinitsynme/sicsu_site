@@ -1,45 +1,45 @@
 package ru.sinitsynme.sicsu_site.rest.dto;
 
-import java.sql.Date;
+import java.util.UUID;
 
 public class TeacherRequestDto {
 
-    private String firstName;
+    private String info;
 
-    private String lastName;
+    private String achievements;
 
-    private Date date;
+    private UUID personalDataId;
 
     public TeacherRequestDto() {
     }
 
-    public TeacherRequestDto(String firstName, String lastName, Date date) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.date = date;
+    public TeacherRequestDto(String info, String achievements, UUID personalDataId) {
+        this.info = info;
+        this.achievements = achievements;
+        this.personalDataId = personalDataId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getInfo() {
+        return info;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAchievements() {
+        return achievements;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAchievements(String achievements) {
+        this.achievements = achievements;
     }
 
-    public Date getDate() {
-        return date;
+    public UUID getPersonalDataId() {
+        return personalDataId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPersonalDataId(UUID personalDataId) {
+        this.personalDataId = personalDataId;
     }
 }
