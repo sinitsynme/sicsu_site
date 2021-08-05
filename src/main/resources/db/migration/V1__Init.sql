@@ -26,6 +26,7 @@ create table personal_data (
                                       first_name varchar(255),
                                       last_name varchar(255),
                                       patronymic varchar(255),
+                                      email varchar(255),
                                       primary key (id)
 );
 
@@ -62,7 +63,6 @@ create table user_role (
 create table usr (
                      id uuid not null,
                      credentials_non_expired boolean,
-                     email varchar(255),
                      is_active boolean,
                      password varchar(255),
                      username varchar(255),
