@@ -1,53 +1,31 @@
 package ru.sinitsynme.sicsu_site.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.stereotype.Service;
-import ru.sinitsynme.sicsu_site.entity.Group;
-import ru.sinitsynme.sicsu_site.repository.GroupRepository;
-import ru.sinitsynme.sicsu_site.entity.Student;
+import org.springframework.data.domain.Page;
+import ru.sinitsynme.sicsu_site.rest.dto.GroupRequestDto;
+import ru.sinitsynme.sicsu_site.rest.dto.GroupResponseDto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
-@Service
-public class GroupService {
+public interface GroupService {
 
-    private final GroupRepository groupRepository;
+    GroupResponseDto createGroup(GroupRequestDto requestDto);
 
-    @Autowired
-    public GroupService(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-    }
+    GroupResponseDto editGroup(GroupRequestDto requestDto, UUID groupId);
 
-    public List<Group> getAllGroups() { //add pagination
-        return groupRepository.findAll(Sort.by(Direction.ASC, "groupFullId"));
-    }
+    GroupResponseDto deleteGroup(UUID groupId);
 
-    public Group getByGroupFullId(String groupFullId) {
-        return groupRepository.findByGroupFullId(groupFullId);
-    }
+    GroupResponseDto getGroup(UUID groupId);
 
-    public void saveGroup(Group group) {
-        groupRepository.save(group);
-    }
+    Page<GroupResponseDto> filterAllGroups(String groupFullIdSymbols);
 
-    public void deleteByGroupId(Long id) {
-        groupRepository.deleteById(id);
-    }
+    GroupResponseDto addGroupToProgram(UUID groupId, UUID programId);
 
-    public Optional<Group> getGroupById(Long id) {
-        return groupRepository.findById(id);
-    }
-//
-//    public void addStudentToGroup(Group group, Student student) {
-//        if (group.getStudents() == null) {
-//            group.setStudents(new HashSet<>());
-//        }
-//        group.getStudents().add(student);
-//    }
+    GroupResponseDto removeGroupFromProgram(UUID groupId);
 
+    Page<GroupResponseDto> getAllGroupsFromProgram(UUID programId);
+
+    Page<GroupResponseDto> getAllGroupsFromFaculty(UUID facultyId);
+
+    GroupResponseDto moveAllStudentsFromGroupToOtherGroup(UUID currentGroupId, UUID otherGroupId);
 
 }
