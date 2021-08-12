@@ -1,9 +1,11 @@
 package ru.sinitsynme.sicsu_site.service;
 
+import org.springframework.data.domain.Page;
 import ru.sinitsynme.sicsu_site.enums.UserRole;
 import ru.sinitsynme.sicsu_site.rest.dto.PersonalDataRequestDto;
 import ru.sinitsynme.sicsu_site.rest.dto.UserResponseDto;
 
+import javax.mail.MessagingException;
 import java.util.UUID;
 
 /**
@@ -11,11 +13,13 @@ import java.util.UUID;
  */
 public interface UserService {
 
-    UserResponseDto saveUser(PersonalDataRequestDto dto, UserRole role);
+    UserResponseDto registerUser(PersonalDataRequestDto dto, UserRole role) throws MessagingException;
+
+    UserResponseDto getUser(UUID userId);
 
     UserResponseDto editUser(PersonalDataRequestDto dto, UUID userId);
 
-    UserResponseDto deleteUser(UUID userId);
+    void deleteUser(UUID userId);
 
     boolean tryToChangePassword(UUID userId, String oldPassword, String newPassword);
 

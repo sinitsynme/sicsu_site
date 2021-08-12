@@ -29,7 +29,7 @@ public class UserEntity implements UserDetails {
 
     private Boolean isActive = true;
 
-    private Boolean credentialsNonExpired = false;
+    private Boolean credentialsNonExpired = true;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private StudentEntity student;
