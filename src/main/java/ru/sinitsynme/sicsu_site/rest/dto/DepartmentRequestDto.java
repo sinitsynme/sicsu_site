@@ -1,19 +1,15 @@
 package ru.sinitsynme.sicsu_site.rest.dto;
 
-import java.util.UUID;
-
 public class DepartmentRequestDto {
 
     private String name;
 
-    private UUID facultyId;
-
     public DepartmentRequestDto() {
     }
 
-    public DepartmentRequestDto(String name, UUID facultyId) {
+    public DepartmentRequestDto(String name) {
         this.name = name;
-        this.facultyId = facultyId;
+
     }
 
     public String getName() {
@@ -24,11 +20,5 @@ public class DepartmentRequestDto {
         this.name = name;
     }
 
-    public UUID getFacultyId() {
-        return facultyId;
-    }
 
-    public void setFacultyId(UUID facultyId) {
-        this.facultyId = facultyId;
-    }
 }

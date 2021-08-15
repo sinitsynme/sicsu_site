@@ -8,15 +8,15 @@ public class GroupResponseDto {
 
     private String groupFullId;
 
-    private FacultyResponseDto facultyResponseDto;
+    private ProgramResponseDto programResponseDto;
 
     public GroupResponseDto() {
     }
 
-    public GroupResponseDto(UUID id, String groupFullId, FacultyResponseDto facultyResponseDto) {
+    public GroupResponseDto(UUID id, String groupFullId, ProgramResponseDto programResponseDto) {
         this.id = id;
         this.groupFullId = groupFullId;
-        this.facultyResponseDto = facultyResponseDto;
+        this.programResponseDto = programResponseDto;
     }
 
     public UUID getId() {
@@ -35,11 +35,11 @@ public class GroupResponseDto {
         this.groupFullId = groupFullId;
     }
 
-    public FacultyResponseDto getFacultyResponseDto() {
-        return facultyResponseDto;
+    public ProgramResponseDto getProgramResponseDto() {
+        return programResponseDto;
     }
 
-    public void setFacultyResponseDto(FacultyResponseDto facultyResponseDto) {
-        this.facultyResponseDto = facultyResponseDto;
+    public void setProgramResponseDto(ProgramResponseDto programResponseDto) {
+        this.programResponseDto = programResponseDto;
     }
 }

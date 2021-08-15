@@ -10,15 +10,12 @@ public class ProgramRequestDto {
 
     private ProgramType type;
 
-    private UUID facultyId;
-
-    public ProgramRequestDto(){
+    public ProgramRequestDto() {
     }
 
     public ProgramRequestDto(String name, ProgramType type, UUID facultyId) {
         this.name = name;
         this.type = type;
-        this.facultyId = facultyId;
     }
 
     public String getName() {
@@ -35,13 +32,5 @@ public class ProgramRequestDto {
 
     public void setType(ProgramType type) {
         this.type = type;
-    }
-
-    public UUID getFacultyId() {
-        return facultyId;
-    }
-
-    public void setFacultyId(UUID facultyId) {
-        this.facultyId = facultyId;
     }
 }

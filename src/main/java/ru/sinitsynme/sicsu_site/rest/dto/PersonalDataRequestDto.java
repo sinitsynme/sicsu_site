@@ -1,17 +1,25 @@
 package ru.sinitsynme.sicsu_site.rest.dto;
 
+import javax.validation.constraints.*;
 import java.sql.Date;
+
 
 public class PersonalDataRequestDto {
 
+    @Size(min = 2, max = 30)
     private String firstName;
 
+    @Size(min = 2, max = 30)
     private String lastName;
 
+    @Size(min = 2, max = 30)
     private String patronymic;
 
+    @NotNull
     private Date birthDate;
 
+    @NotNull
+    @Email
     private String email;
 
     public PersonalDataRequestDto() {

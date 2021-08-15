@@ -6,14 +6,11 @@ public class GroupRequestDto {
 
     private String groupFullId;
 
-    private UUID facultyId;
-
     public GroupRequestDto() {
     }
 
-    public GroupRequestDto(String groupFullId, UUID facultyId) {
+    public GroupRequestDto(String groupFullId) {
         this.groupFullId = groupFullId;
-        this.facultyId = facultyId;
     }
 
     public String getGroupFullId() {
@@ -24,11 +21,4 @@ public class GroupRequestDto {
         this.groupFullId = groupFullId;
     }
 
-    public UUID getFacultyId() {
-        return facultyId;
-    }
-
-    public void setFacultyId(UUID facultyId) {
-        this.facultyId = facultyId;
-    }
 }
