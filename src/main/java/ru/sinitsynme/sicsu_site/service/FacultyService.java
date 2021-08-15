@@ -1,6 +1,7 @@
 package ru.sinitsynme.sicsu_site.service;
 
 import org.springframework.data.domain.Page;
+import ru.sinitsynme.sicsu_site.entity.FacultyEntity;
 import ru.sinitsynme.sicsu_site.rest.dto.FacultyRequestDto;
 import ru.sinitsynme.sicsu_site.rest.dto.FacultyResponseDto;
 
@@ -12,11 +13,10 @@ public interface FacultyService {
 
     FacultyResponseDto editFaculty(FacultyRequestDto requestDto, UUID facultyId);
 
-    FacultyResponseDto deleteFaculty(UUID facultyId);
+    void deleteFaculty(UUID facultyId);
 
     FacultyResponseDto getFaculty(UUID facultyId);
 
     Page<FacultyResponseDto> getAllFaculties();
-
 
 }

@@ -3,17 +3,16 @@ package ru.sinitsynme.sicsu_site.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sinitsynme.sicsu_site.entity.GroupEntity;
 import ru.sinitsynme.sicsu_site.entity.StudentEntity;
 import ru.sinitsynme.sicsu_site.mapper.StudentMapper;
-import ru.sinitsynme.sicsu_site.repository.GroupRepository;
-import ru.sinitsynme.sicsu_site.repository.StudentRepository;
 import ru.sinitsynme.sicsu_site.rest.dto.StudentResponseDto;
 import ru.sinitsynme.sicsu_site.service.StudentService;
+import ru.sinitsynme.sicsu_site.service.entityservice.GroupEntityService;
+import ru.sinitsynme.sicsu_site.service.entityservice.StudentEntityService;
 
 import java.util.UUID;
 
@@ -22,50 +21,51 @@ import java.util.UUID;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentMapper studentMapper;
-    private final StudentRepository studentRepository;
-    private final GroupRepository groupRepository;
+    private final StudentEntityService studentEntityService;
+    private final GroupEntityService groupEntityService;
 
     @Autowired
-    public StudentServiceImpl(StudentMapper studentMapper, StudentRepository studentRepository, GroupRepository groupRepository) {
+    public StudentServiceImpl(StudentMapper studentMapper, StudentEntityService studentEntityService, GroupEntityService groupEntityService) {
         this.studentMapper = studentMapper;
-        this.studentRepository = studentRepository;
-        this.groupRepository = groupRepository;
+        this.studentEntityService = studentEntityService;
+        this.groupEntityService = groupEntityService;
     }
 
     @Override
     public void deleteStudent(UUID studentId) {
-        studentRepository.deleteById(studentId);
+        studentEntityService.deleteEntityById(studentId);
     }
 
     @Override
     public StudentResponseDto getStudent(UUID studentId) {
-        return studentMapper.toResponseDto(studentRepository.getOne(studentId));
+        return studentMapper.toResponseDto(studentEntityService.getEntity(studentId));
     }
 
     @Override
     public Page<StudentResponseDto> filterAllStudents(String firstNameSymbols, String lastNameSymbols, String groupFullIdSymbols) {
-        return studentRepository.filterStudents(firstNameSymbols, lastNameSymbols, groupFullIdSymbols, PageRequest.of(0, 50, Sort.by("lastName"))).map(studentMapper::toResponseDto);
+        return studentEntityService.filterAllStudents(firstNameSymbols, lastNameSymbols, groupFullIdSymbols, PageRequest.of(0, 50, Sort.by("personalData"))).map(studentMapper::toResponseDto);
     }
 
     @Override
     public StudentResponseDto addStudentToGroup(UUID studentId, UUID groupId) {
-        GroupEntity group = groupRepository.getOne(groupId);
-        StudentEntity student = studentRepository.getOne(studentId);
+        GroupEntity group = groupEntityService.getEntity(groupId);
+        StudentEntity student = studentEntityService.getEntity(studentId);
 
         student.setGroup(group);
-        return studentMapper.toResponseDto(studentRepository.save(student));
+        return studentMapper.toResponseDto(studentEntityService.saveEntity(student));
 
     }
 
     @Override
     public StudentResponseDto removeStudentFromGroup(UUID studentId) {
-        StudentEntity student = studentRepository.getOne(studentId);
+        StudentEntity student = studentEntityService.getEntity(studentId);
         student.setGroup(null);
-        return studentMapper.toResponseDto(studentRepository.save(student));
+        return studentMapper.toResponseDto(studentEntityService.saveEntity(student));
     }
 
     @Override
     public Page<StudentResponseDto> getAllStudentsFromGroup(UUID groupId) {
-        return studentRepository.findAllByGroup(groupRepository.getOne(groupId), PageRequest.of(0, 30, Sort.by("lastName"))).map(studentMapper::toResponseDto);
+        return studentEntityService.findAllByGroup(groupEntityService.getEntity(groupId),
+                PageRequest.of(0, 30, Sort.by("lastName"))).map(studentMapper::toResponseDto);
     }
 }

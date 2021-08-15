@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "personal_data")
-public class PersonalDataEntity {
+public class PersonalDataEntity implements Comparable<PersonalDataEntity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -79,5 +79,16 @@ public class PersonalDataEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(PersonalDataEntity otherPersonalData) {
+        int firstNameCompareValue = this.firstName.compareTo(otherPersonalData.firstName);
+        int lastNameCompareValue = this.lastName.compareTo(otherPersonalData.lastName);
+        int patronymicCompareValue = this.patronymic.compareTo(otherPersonalData.patronymic);
+
+        return lastNameCompareValue != 0 ? lastNameCompareValue :
+                firstNameCompareValue != 0 ? firstNameCompareValue :
+                        patronymicCompareValue;
     }
 }

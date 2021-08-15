@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface TeacherService {
 
-    TeacherResponseDto deleteTeacher(UUID teacherId);
+    void deleteTeacher(UUID teacherId);
 
     TeacherResponseDto getTeacher(UUID teacherId);
 

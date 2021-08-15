@@ -12,7 +12,7 @@ public interface ProgramService {
 
     ProgramResponseDto editProgram(ProgramRequestDto requestDto, UUID programId);
 
-    ProgramResponseDto deleteProgram(UUID programId);
+    void deleteProgram(UUID programId);
 
     ProgramResponseDto getProgram(UUID programId);
 

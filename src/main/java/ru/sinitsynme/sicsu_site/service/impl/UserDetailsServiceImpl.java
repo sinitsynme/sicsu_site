@@ -1,30 +1,24 @@
 package ru.sinitsynme.sicsu_site.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.sinitsynme.sicsu_site.entity.User;
-import ru.sinitsynme.sicsu_site.repository.UserRepository;
-
+import ru.sinitsynme.sicsu_site.service.entityservice.UserEntityService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserEntityService userEntityService;
 
-
-    public UserDetailsServiceImpl(
-            UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+    public UserDetailsServiceImpl(UserEntityService userEntityService) {
+        this.userEntityService = userEntityService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(s);
-        if (user == null) {
-            throw new UsernameNotFoundException("User with such username does not exist");
-        }
-        return user;
+        return userEntityService.findByUsername(s);
     }
 }

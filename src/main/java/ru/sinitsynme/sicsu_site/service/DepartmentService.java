@@ -12,7 +12,7 @@ public interface DepartmentService {
 
     DepartmentResponseDto editDepartment(DepartmentRequestDto requestDto, UUID departmentId);
 
-    DepartmentResponseDto deleteDepartment(UUID departmentId);
+    void deleteDepartment(UUID departmentId);
 
     DepartmentResponseDto getDepartment(UUID departmentId);
 

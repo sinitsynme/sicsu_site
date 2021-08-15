@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface StudentService {
 
-    StudentResponseDto deleteStudent(UUID studentId);
+    void deleteStudent(UUID studentId);
 
     StudentResponseDto getStudent(UUID studentId);
 

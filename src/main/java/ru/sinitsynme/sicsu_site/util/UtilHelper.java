@@ -1,6 +1,12 @@
 package ru.sinitsynme.sicsu_site.util;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 public class UtilHelper {
 
@@ -25,5 +31,9 @@ public class UtilHelper {
 
     public static String formLogin(String firstName, String lastName){
         return transliterate(firstName + lastName).toLowerCase();
+    }
+
+    public static Page<?> convertListToPage(List<?> list, int pageSize, String sortField){
+        return new PageImpl<>(list, PageRequest.of(0, pageSize, Sort.by(sortField)), list.size());
     }
 }

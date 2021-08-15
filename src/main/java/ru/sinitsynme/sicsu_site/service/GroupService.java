@@ -12,9 +12,11 @@ public interface GroupService {
 
     GroupResponseDto editGroup(GroupRequestDto requestDto, UUID groupId);
 
-    GroupResponseDto deleteGroup(UUID groupId);
+    void deleteGroup(UUID groupId);
 
     GroupResponseDto getGroup(UUID groupId);
+
+    GroupResponseDto getGroupByGroupFullId(String groupFullId);
 
     Page<GroupResponseDto> filterAllGroups(String groupFullIdSymbols);
 
