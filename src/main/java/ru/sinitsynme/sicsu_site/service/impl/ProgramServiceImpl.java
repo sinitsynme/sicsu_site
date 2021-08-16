@@ -71,7 +71,7 @@ public class ProgramServiceImpl implements ProgramService {
     public Page<ProgramResponseDto> getAllProgramsFromFaculty(UUID facultyId) {
         FacultyEntity facultyEntity = facultyEntityService.getEntity(facultyId);
         return UtilHelper.convertListToPage(facultyEntity.getProgramList(), 20, "type")
-                .map(it -> (ProgramEntity) it).map(programMapper::toResponseDto);
+                .map(programMapper::toResponseDto);
 
     }
 

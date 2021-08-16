@@ -71,6 +71,6 @@ public class TeacherServiceImpl implements TeacherService {
     public Page<TeacherResponseDto> getAllTeachersFromDepartment(UUID departmentId) {
         DepartmentEntity departmentEntity = departmentEntityService.getEntity(departmentId);
         return UtilHelper.convertListToPage(departmentEntity.getTeacherList(), 25, "personalData")
-                .map(it -> (TeacherEntity) it).map(teacherMapper::toResponseDto);
+                .map(teacherMapper::toResponseDto);
     }
 }

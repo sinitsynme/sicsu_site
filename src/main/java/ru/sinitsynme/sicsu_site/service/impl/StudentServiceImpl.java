@@ -43,7 +43,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Page<StudentResponseDto> filterAllStudents(String firstNameSymbols, String lastNameSymbols, String groupFullIdSymbols) {
-        return studentEntityService.filterAllStudents(firstNameSymbols, lastNameSymbols, groupFullIdSymbols, PageRequest.of(0, 50, Sort.by("personalData"))).map(studentMapper::toResponseDto);
+        return studentEntityService.filterAllStudents(firstNameSymbols, lastNameSymbols, groupFullIdSymbols, PageRequest.of(0, 50, Sort.by("personalData")))
+                .map(studentMapper::toResponseDto);
     }
 
     @Override

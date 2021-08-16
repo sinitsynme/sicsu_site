@@ -99,7 +99,6 @@ public class GroupServiceImpl implements GroupService {
         List<GroupEntity> groupEntityList = programEntity.getGroupList();
 
         return UtilHelper.convertListToPage(groupEntityList, 15, "groupFullId")
-                .map(it -> (GroupEntity) it)
                 .map(groupMapper::toResponseDto);
     }
 
@@ -111,7 +110,6 @@ public class GroupServiceImpl implements GroupService {
         facultyEntity.getProgramList().forEach(program -> groupList.addAll(program.getGroupList()));
 
         return UtilHelper.convertListToPage(groupList, 15, "groupFullId")
-                .map(it -> (GroupEntity) it)
                 .map(groupMapper::toResponseDto);
     }
 

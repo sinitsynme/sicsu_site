@@ -33,7 +33,7 @@ public class UtilHelper {
         return transliterate(firstName + lastName).toLowerCase();
     }
 
-    public static Page<?> convertListToPage(List<?> list, int pageSize, String sortField){
+    public static <T> Page<T> convertListToPage(List<T> list, int pageSize, String sortField){
         return new PageImpl<>(list, PageRequest.of(0, pageSize, Sort.by(sortField)), list.size());
     }
 }

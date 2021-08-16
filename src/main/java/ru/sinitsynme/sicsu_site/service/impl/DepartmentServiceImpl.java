@@ -79,7 +79,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         FacultyEntity facultyEntity = facultyEntityService.getEntity(facultyId);
 
         return UtilHelper.convertListToPage(facultyEntity.getDepartments(), 15, "name")
-                .map(it -> (DepartmentEntity) it).map(departmentMapper::toResponseDto);
+                .map(departmentMapper::toResponseDto);
     }
 
 }
